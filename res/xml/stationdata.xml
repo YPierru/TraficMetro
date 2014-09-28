@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<map>
+    <line
+        name="Métro 1"
+        redCode="FF"
+        greenCode="BA"
+        blueCode="11"
+        numberOfStations="2" ><!-- 25 -->
+        <station
+            name="La Défense"
+            terminus="true"
+            x="68"
+            y="182" />
+        <station
+            name="Esplanade La Défense"
+            terminus="true"
+            x="168"
+            y="282" />
+    </line>
+
+</map>

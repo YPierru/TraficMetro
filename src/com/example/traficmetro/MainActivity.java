@@ -1,26 +1,26 @@
 package com.example.traficmetro;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
-import com.example.traficmetro.customview.LineView;
-import com.example.traficmetro.customview.StationView;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
+import android.content.res.XmlResourceParser;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnTouchListener;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
+
+import com.example.traficmetro.customview.LineView;
 
 public class MainActivity extends Activity {
 
 	private int mMaxX, mMaxY;
-
+	private RelativeLayout mLayout;
+	private MapMetro mMapMetro;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,20 +28,19 @@ public class MainActivity extends Activity {
 		Display display = getWindowManager().getDefaultDisplay();
 		Point size = new Point();
 		display.getSize(size);
-		this.mMaxX = size.x;
-		this.mMaxY = size.y;
-
+		this.mMaxX = size.x-30;
+		this.mMaxY = size.y-30;
+		
+		this.mMapMetro = new MapMetro(this);
+		System.out.println("YOUHOUHOUHOHUOHUHOUHOUHOUH");
 		// station.setOnTouchListener(new onTouchStationListener());
 		
 		
-		//On créer le layout
-		RelativeLayout mLayout = new RelativeLayout(this);
-		mLayout.setBackgroundColor(Color.WHITE);
-		
+		//On créer le layout		
 		
 		
 		//Points au pif
-		double[] xy0={68*1.5,182*1.5};
+		/*double[] xy0={68*1.5,182*1.5};
 		double[] xy1={90*1.5,198*1.5};
 		double[] xy2={114*1.5,215*1.5};
 		double[] xy3={138*1.5,232*1.5};
@@ -64,10 +63,10 @@ public class MainActivity extends Activity {
 		listTarget.add(xy7);
 		listTarget.add(xy8);
 		
-		int diameter=30;
+		int diameter=StationView.getDiameter();
 		
 		for(int i=0;i<listTarget.size();i++){
-			mLayout.addView(new StationView(getApplicationContext(), (int)listTarget.get(i)[0],(int)listTarget.get(i)[1], diameter));
+			mLayout.addView(new StationView(getApplicationContext(), (int)listTarget.get(i)[0],(int)listTarget.get(i)[1]));
 		}
 	
 		double xTarget;
@@ -94,9 +93,62 @@ public class MainActivity extends Activity {
 			//On ajoute la ligne sur le layout
 			mLayout.addView(new LineView(this, (int)xLine, (int)yLine, (int)width, rotation));
 			
+		}*/
+
+		System.out.println("01");
+		try {
+
+			System.out.println("02");
+			this.mLayout=createLayout();
+		} catch (XmlPullParserException | IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("03");
+			e.printStackTrace();
 		}
+		
+		setContentView(this.mLayout);
+	}
 	
-		setContentView(mLayout);
+	public RelativeLayout createLayout() throws XmlPullParserException, IOException{
+		RelativeLayout mLayout = new RelativeLayout(this);
+		mLayout.setBackgroundColor(Color.WHITE);
+		
+		XmlResourceParser parserXML= getResources().getXml(R.xml.stationdata);
+		parserXML.next();
+		
+		int eventType=XmlPullParser.END_DOCUMENT;
+		eventType = parserXML.getEventType();
+
+		Line currentLine=null;
+		System.out.println("1");
+		while(eventType!=XmlPullParser.END_DOCUMENT){
+
+			if(eventType==XmlPullParser.START_TAG && parserXML.getName().equalsIgnoreCase("line")){
+				
+				currentLine = new Line(parserXML.getAttributeIntValue(null, "rCode", 0), 
+									   parserXML.getAttributeIntValue(null, "gCode", 0), 
+									   parserXML.getAttributeIntValue(null, "bCode", 0), 
+									   parserXML.getAttributeValue(null, "name"));
+			}
+			
+			if(eventType==XmlPullParser.START_TAG && parserXML.getName().equalsIgnoreCase("station")){
+				currentLine.createThenAddStation(this, 
+ 					   							 currentLine.getName(), 
+ 					   							 parserXML.getAttributeValue(null, "name"), 
+ 					   							 parserXML.getAttributeIntValue(null, "x", 0), 
+ 					   							 parserXML.getAttributeIntValue(null, "y", 0), 
+ 					   							 parserXML.getAttributeBooleanValue(null, "terminus", false));
+			}
+			
+			if(eventType==XmlPullParser.END_TAG && parserXML.getName().equalsIgnoreCase("line")){
+				this.mMapMetro.addLine(currentLine);
+			}
+			
+			eventType=parserXML.next();
+			
+		}
+		
+		return this.mMapMetro.buildLayout();
 	}
 
 	public double calculateXLine(double x, int diam){
@@ -124,15 +176,5 @@ public class MainActivity extends Activity {
 		return rot;
 	}
 	
-	public class onTouchStationListener implements OnTouchListener {
-
-		@Override
-		public boolean onTouch(View v, MotionEvent event) {
-			Toast.makeText(getApplicationContext(), "Yep !", Toast.LENGTH_SHORT)
-					.show();
-			;
-			return false;
-		}
-
-	}
+	
 }
