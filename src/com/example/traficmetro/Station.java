@@ -27,7 +27,7 @@ public class Station {
 		this.mListMembershipLines=listMembershipLines;
 		
 		if(this.mListMembershipLines.size()>1){
-			this.stationView = new StationView(context, x, y, Color.rgb(255, 255, 255));
+			this.stationView = new StationView(context, x, y, Color.argb(255,255, 255, 255));
 		}else{
 			this.stationView = new StationView(context, x, y, this.mListMembershipLines.get(0).getColor());
 		}

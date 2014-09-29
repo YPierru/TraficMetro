@@ -95,14 +95,10 @@ public class MainActivity extends Activity {
 			
 		}*/
 
-		System.out.println("01");
 		try {
-
-			System.out.println("02");
 			this.mLayout=createLayout();
 		} catch (XmlPullParserException | IOException e) {
 			// TODO Auto-generated catch block
-			System.out.println("03");
 			e.printStackTrace();
 		}
 		
@@ -110,8 +106,10 @@ public class MainActivity extends Activity {
 	}
 	
 	public RelativeLayout createLayout() throws XmlPullParserException, IOException{
-		RelativeLayout mLayout = new RelativeLayout(this);
-		mLayout.setBackgroundColor(Color.WHITE);
+		
+		/*
+		 * Etape 1 : construire les stations à partir du fichier XML
+		 */
 		
 		XmlResourceParser parserXML= getResources().getXml(R.xml.stationdata);
 		parserXML.next();
@@ -120,14 +118,13 @@ public class MainActivity extends Activity {
 		eventType = parserXML.getEventType();
 
 		Line currentLine=null;
-		System.out.println("1");
 		while(eventType!=XmlPullParser.END_DOCUMENT){
 
 			if(eventType==XmlPullParser.START_TAG && parserXML.getName().equalsIgnoreCase("line")){
 				
-				currentLine = new Line(parserXML.getAttributeIntValue(null, "rCode", 0), 
-									   parserXML.getAttributeIntValue(null, "gCode", 0), 
-									   parserXML.getAttributeIntValue(null, "bCode", 0), 
+				currentLine = new Line(parserXML.getAttributeIntValue(null, "redCode", 0), 
+									   parserXML.getAttributeIntValue(null, "greenCode", 0), 
+									   parserXML.getAttributeIntValue(null, "blueCode", 0), 
 									   parserXML.getAttributeValue(null, "name"));
 			}
 			
@@ -148,8 +145,15 @@ public class MainActivity extends Activity {
 			
 		}
 		
+		
+		/*
+		 * Etape 2 : construire les lignes joignant les stations entre elles
+		 */
+		
+		
 		return this.mMapMetro.buildLayout();
 	}
+	
 
 	public double calculateXLine(double x, int diam){
 		return x+diam/2;
@@ -160,18 +164,19 @@ public class MainActivity extends Activity {
 	}
 	
 	public double calculateLineWidth(double xL, double yL, double xT, double yT){
+		
 		return Math.sqrt(Math.pow((xL-xT),2)+Math.pow(yL-yT, 2));
 	}
 	
 	public float calculateLineRotation(double xL, double yL, double xT, double yT, double width){
 		float rot= (float)Math.toDegrees(Math.asin(Math.abs(xL-xT)/width)); 
-		/*if(xT>=xL && yT>=yL){
+		if(xT>=xL && yT>=yL){
 			rot-=90;
 		}else if(xT<xL && yT>yL){
 			rot+=90;
 		}else if(xT<=xL && yT<yL){
 			rot+=180;
-		}*/
+		}
 		
 		return rot;
 	}

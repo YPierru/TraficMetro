@@ -2,9 +2,9 @@
 <map>
     <line
         name="Métro 1"
-        redCode="FF"
-        greenCode="BA"
-        blueCode="11"
+        redCode="255"
+        greenCode="186"
+        blueCode="17"
         numberOfStations="2" ><!-- 25 -->
         <station
             name="La Défense"
@@ -14,8 +14,8 @@
         <station
             name="Esplanade La Défense"
             terminus="true"
-            x="168"
-            y="282" />
+            x="290"
+            y="498" />
     </line>
 
 </map>
