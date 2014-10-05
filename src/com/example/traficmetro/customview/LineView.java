@@ -1,31 +1,59 @@
 package com.example.traficmetro.customview;
 
-import android.app.ActionBar.LayoutParams;
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.CornerPathEffect;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PointF;
 import android.view.View;
-import android.view.ViewGroup;
 
 public class LineView extends View {
 
-	private static final int HEIGHT=10;
-	
-	public LineView(Context ct, int x, int y, int width, float rotation) {
+	private static final int HEIGHT = 5;
+	private Paint paint;
+	private Path path;
+	private CornerPathEffect cpe;
+	private int color;
+	private ArrayList<PointF> listLinePoints;
+
+	public LineView(Context ct, ArrayList<PointF>listLinePoints, int color) {
 		super(ct);
-		this.setBackgroundColor(Color.rgb(255, 186, 17));
-		this.setBackgroundColor(Color.BLACK);
+		this.listLinePoints=listLinePoints;
+		this.color=color;
 		
-		System.out.println(width);
-		this.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT,(int)HEIGHT));
-		this.setX(x);
-		this.setY(y);
-		this.setPivotX(0f);
-		this.setPivotY((int)HEIGHT/2);
-		this.setRotation(rotation);
+		this.paint=new Paint();
+		this.path=new Path();
+		this.cpe=new CornerPathEffect(5);
+		
 	}
+
+	@Override
+	public void onDraw(Canvas canvas) {
+		this.paint.setColor(this.color);
+		this.paint.setStrokeWidth(HEIGHT);
+		this.paint.setStyle(Paint.Style.STROKE);
+		this.paint.setDither(true);
+		this.paint.setStrokeJoin(Paint.Join.ROUND);
+		this.paint.setStrokeCap(Paint.Cap.ROUND);
+		this.paint.setPathEffect(this.cpe);
+		this.paint.setAntiAlias(true);
 		
-	public static int getLineHeight(){
+		this.path.moveTo(this.listLinePoints.get(0).x, this.listLinePoints.get(0).y);
+		
+		for(int i=1;i<this.listLinePoints.size();i++){
+			this.path.lineTo(this.listLinePoints.get(i).x, this.listLinePoints.get(i).y);
+		}
+		
+		canvas.drawPath(path,paint);
+		
+	}
+
+	public static int getLineHeight() {
 		return HEIGHT;
 	}
+
 }

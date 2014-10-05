@@ -1,18 +1,18 @@
 package com.example.traficmetro.customview;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.view.GestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.traficmetro.R.drawable;
-
 public class StationView extends View {
 	
-	private static final int DIAMETER=45;
+	private static final int DIAMETER=15;
 	private float xCenterCircle;
 	private float yCenterCircle;
+	private GestureDetector gestureDetector;
+	private View.OnTouchListener gestureListener;
 	
 	public StationView(Context ct, float x, float y, int color){
 		super(ct);
@@ -29,6 +29,8 @@ public class StationView extends View {
 		this.setLayoutParams(new ViewGroup.LayoutParams(DIAMETER, DIAMETER));
 		this.setBackground(gd);
 	}
+	
+	
 		
 	public static int getDiameter(){
 		return DIAMETER;

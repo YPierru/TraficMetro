@@ -1,4 +1,4 @@
-package com.example.traficmetro;
+package com.example.traficmetro.data;
 
 import java.util.ArrayList;
 
@@ -51,6 +51,8 @@ public class Station {
 	public String getLine() {
 		return line;
 	}
+	
+	
 	
 
 	

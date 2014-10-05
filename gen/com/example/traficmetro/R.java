@@ -72,4 +72,388 @@ public final class R {
     public static final class xml {
         public static final int stationdata=0x7f040000;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a View.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #View_android_background android:background}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_clickable android:clickable}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_contentDescription android:contentDescription}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_drawingCacheQuality android:drawingCacheQuality}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_duplicateParentState android:duplicateParentState}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_fadeScrollbars android:fadeScrollbars}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_fadingEdge android:fadingEdge}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_fadingEdgeLength android:fadingEdgeLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_fitsSystemWindows android:fitsSystemWindows}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_focusable android:focusable}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_focusableInTouchMode android:focusableInTouchMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_hapticFeedbackEnabled android:hapticFeedbackEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_id android:id}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_isScrollContainer android:isScrollContainer}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_keepScreenOn android:keepScreenOn}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_longClickable android:longClickable}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_minHeight android:minHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_minWidth android:minWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_nextFocusDown android:nextFocusDown}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_nextFocusLeft android:nextFocusLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_nextFocusRight android:nextFocusRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_nextFocusUp android:nextFocusUp}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_onClick android:onClick}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_padding android:padding}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_paddingBottom android:paddingBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_paddingLeft android:paddingLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_paddingRight android:paddingRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_paddingTop android:paddingTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_saveEnabled android:saveEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_scrollX android:scrollX}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_scrollY android:scrollY}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_scrollbarAlwaysDrawHorizontalTrack android:scrollbarAlwaysDrawHorizontalTrack}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_scrollbarAlwaysDrawVerticalTrack android:scrollbarAlwaysDrawVerticalTrack}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_scrollbarDefaultDelayBeforeFade android:scrollbarDefaultDelayBeforeFade}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_scrollbarFadeDuration android:scrollbarFadeDuration}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_scrollbarSize android:scrollbarSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_scrollbarStyle android:scrollbarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_scrollbarThumbHorizontal android:scrollbarThumbHorizontal}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_scrollbarThumbVertical android:scrollbarThumbVertical}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_scrollbarTrackHorizontal android:scrollbarTrackHorizontal}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_scrollbarTrackVertical android:scrollbarTrackVertical}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_scrollbars android:scrollbars}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_soundEffectsEnabled android:soundEffectsEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_tag android:tag}</code></td><td></td></tr>
+           <tr><td><code>{@link #View_android_visibility android:visibility}</code></td><td></td></tr>
+           </table>
+           @see #View_android_background
+           @see #View_android_clickable
+           @see #View_android_contentDescription
+           @see #View_android_drawingCacheQuality
+           @see #View_android_duplicateParentState
+           @see #View_android_fadeScrollbars
+           @see #View_android_fadingEdge
+           @see #View_android_fadingEdgeLength
+           @see #View_android_fitsSystemWindows
+           @see #View_android_focusable
+           @see #View_android_focusableInTouchMode
+           @see #View_android_hapticFeedbackEnabled
+           @see #View_android_id
+           @see #View_android_isScrollContainer
+           @see #View_android_keepScreenOn
+           @see #View_android_longClickable
+           @see #View_android_minHeight
+           @see #View_android_minWidth
+           @see #View_android_nextFocusDown
+           @see #View_android_nextFocusLeft
+           @see #View_android_nextFocusRight
+           @see #View_android_nextFocusUp
+           @see #View_android_onClick
+           @see #View_android_padding
+           @see #View_android_paddingBottom
+           @see #View_android_paddingLeft
+           @see #View_android_paddingRight
+           @see #View_android_paddingTop
+           @see #View_android_saveEnabled
+           @see #View_android_scrollX
+           @see #View_android_scrollY
+           @see #View_android_scrollbarAlwaysDrawHorizontalTrack
+           @see #View_android_scrollbarAlwaysDrawVerticalTrack
+           @see #View_android_scrollbarDefaultDelayBeforeFade
+           @see #View_android_scrollbarFadeDuration
+           @see #View_android_scrollbarSize
+           @see #View_android_scrollbarStyle
+           @see #View_android_scrollbarThumbHorizontal
+           @see #View_android_scrollbarThumbVertical
+           @see #View_android_scrollbarTrackHorizontal
+           @see #View_android_scrollbarTrackVertical
+           @see #View_android_scrollbars
+           @see #View_android_soundEffectsEnabled
+           @see #View_android_tag
+           @see #View_android_visibility
+         */
+        public static final int[] View = {
+            0x01010063, 0x01010064, 0x01010065, 0x01010066,
+            0x01010067, 0x01010068, 0x01010069, 0x0101007f,
+            0x010100d0, 0x010100d1, 0x010100d2, 0x010100d3,
+            0x010100d4, 0x010100d5, 0x010100d6, 0x010100d7,
+            0x010100d8, 0x010100d9, 0x010100da, 0x010100db,
+            0x010100dc, 0x010100dd, 0x010100de, 0x010100df,
+            0x010100e0, 0x010100e1, 0x010100e2, 0x010100e3,
+            0x010100e4, 0x010100e5, 0x010100e6, 0x010100e7,
+            0x010100e8, 0x010100e9, 0x0101013f, 0x01010140,
+            0x01010215, 0x01010216, 0x0101024e, 0x0101025e,
+            0x0101026f, 0x01010273, 0x010102a8, 0x010102a9,
+            0x010102aa
+        };
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#background}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:background
+        */
+        public static final int View_android_background = 12;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#clickable}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:clickable
+        */
+        public static final int View_android_clickable = 29;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#contentDescription}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:contentDescription
+        */
+        public static final int View_android_contentDescription = 41;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#drawingCacheQuality}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:drawingCacheQuality
+        */
+        public static final int View_android_drawingCacheQuality = 32;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#duplicateParentState}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:duplicateParentState
+        */
+        public static final int View_android_duplicateParentState = 33;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#fadeScrollbars}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:fadeScrollbars
+        */
+        public static final int View_android_fadeScrollbars = 44;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#fadingEdge}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:fadingEdge
+        */
+        public static final int View_android_fadingEdge = 23;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#fadingEdgeLength}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:fadingEdgeLength
+        */
+        public static final int View_android_fadingEdgeLength = 24;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#fitsSystemWindows}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:fitsSystemWindows
+        */
+        public static final int View_android_fitsSystemWindows = 21;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#focusable}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:focusable
+        */
+        public static final int View_android_focusable = 18;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#focusableInTouchMode}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:focusableInTouchMode
+        */
+        public static final int View_android_focusableInTouchMode = 19;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#hapticFeedbackEnabled}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:hapticFeedbackEnabled
+        */
+        public static final int View_android_hapticFeedbackEnabled = 39;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#id}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:id
+        */
+        public static final int View_android_id = 8;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#isScrollContainer}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:isScrollContainer
+        */
+        public static final int View_android_isScrollContainer = 38;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#keepScreenOn}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:keepScreenOn
+        */
+        public static final int View_android_keepScreenOn = 37;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#longClickable}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:longClickable
+        */
+        public static final int View_android_longClickable = 30;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#minHeight}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:minHeight
+        */
+        public static final int View_android_minHeight = 35;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#minWidth}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:minWidth
+        */
+        public static final int View_android_minWidth = 34;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#nextFocusDown}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:nextFocusDown
+        */
+        public static final int View_android_nextFocusDown = 28;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#nextFocusLeft}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:nextFocusLeft
+        */
+        public static final int View_android_nextFocusLeft = 25;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#nextFocusRight}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:nextFocusRight
+        */
+        public static final int View_android_nextFocusRight = 26;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#nextFocusUp}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:nextFocusUp
+        */
+        public static final int View_android_nextFocusUp = 27;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#onClick}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:onClick
+        */
+        public static final int View_android_onClick = 40;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#padding}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:padding
+        */
+        public static final int View_android_padding = 13;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#paddingBottom}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:paddingBottom
+        */
+        public static final int View_android_paddingBottom = 17;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#paddingLeft}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:paddingLeft
+        */
+        public static final int View_android_paddingLeft = 14;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#paddingRight}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:paddingRight
+        */
+        public static final int View_android_paddingRight = 16;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#paddingTop}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:paddingTop
+        */
+        public static final int View_android_paddingTop = 15;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#saveEnabled}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:saveEnabled
+        */
+        public static final int View_android_saveEnabled = 31;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#scrollX}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:scrollX
+        */
+        public static final int View_android_scrollX = 10;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#scrollY}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:scrollY
+        */
+        public static final int View_android_scrollY = 11;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#scrollbarAlwaysDrawHorizontalTrack}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:scrollbarAlwaysDrawHorizontalTrack
+        */
+        public static final int View_android_scrollbarAlwaysDrawHorizontalTrack = 5;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#scrollbarAlwaysDrawVerticalTrack}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:scrollbarAlwaysDrawVerticalTrack
+        */
+        public static final int View_android_scrollbarAlwaysDrawVerticalTrack = 6;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#scrollbarDefaultDelayBeforeFade}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:scrollbarDefaultDelayBeforeFade
+        */
+        public static final int View_android_scrollbarDefaultDelayBeforeFade = 43;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#scrollbarFadeDuration}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:scrollbarFadeDuration
+        */
+        public static final int View_android_scrollbarFadeDuration = 42;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#scrollbarSize}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:scrollbarSize
+        */
+        public static final int View_android_scrollbarSize = 0;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#scrollbarStyle}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:scrollbarStyle
+        */
+        public static final int View_android_scrollbarStyle = 7;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#scrollbarThumbHorizontal}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:scrollbarThumbHorizontal
+        */
+        public static final int View_android_scrollbarThumbHorizontal = 1;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#scrollbarThumbVertical}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:scrollbarThumbVertical
+        */
+        public static final int View_android_scrollbarThumbVertical = 2;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#scrollbarTrackHorizontal}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:scrollbarTrackHorizontal
+        */
+        public static final int View_android_scrollbarTrackHorizontal = 3;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#scrollbarTrackVertical}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:scrollbarTrackVertical
+        */
+        public static final int View_android_scrollbarTrackVertical = 4;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#scrollbars}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:scrollbars
+        */
+        public static final int View_android_scrollbars = 22;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#soundEffectsEnabled}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:soundEffectsEnabled
+        */
+        public static final int View_android_soundEffectsEnabled = 36;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#tag}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:tag
+        */
+        public static final int View_android_tag = 9;
+        /**
+          <p>This symbol is the offset where the {@link android.R.attr#visibility}
+          attribute's value can be found in the {@link #View} array.
+          @attr name android:visibility
+        */
+        public static final int View_android_visibility = 20;
+    };
 }
