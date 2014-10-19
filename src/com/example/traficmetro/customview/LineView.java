@@ -9,6 +9,7 @@ import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
+import android.graphics.Rect;
 import android.view.View;
 
 public class LineView extends View {
@@ -28,6 +29,8 @@ public class LineView extends View {
 		this.paint=new Paint();
 		this.path=new Path();
 		this.cpe=new CornerPathEffect(5);
+		setWillNotDraw(true);
+		//Log.d("debuuuug", "coucou");
 		
 	}
 
@@ -41,7 +44,7 @@ public class LineView extends View {
 		this.paint.setStrokeCap(Paint.Cap.ROUND);
 		this.paint.setPathEffect(this.cpe);
 		this.paint.setAntiAlias(true);
-		
+
 		this.path.moveTo(this.listLinePoints.get(0).x, this.listLinePoints.get(0).y);
 		
 		for(int i=1;i<this.listLinePoints.size();i++){
@@ -50,8 +53,17 @@ public class LineView extends View {
 		
 		canvas.drawPath(path,paint);
 		
+		paint.setColor(Color.RED);
+		//canvas.drawRect(this.getC, paint);
+		
 	}
 
+	private Rect getBounds(){
+		int[] l = new int[2];
+	    getLocationOnScreen(l);
+	    return new Rect(l[0], l[1], l[0] + getWidth(), l[1] + getHeight());
+	}
+	
 	public static int getLineHeight() {
 		return HEIGHT;
 	}

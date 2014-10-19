@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -20,7 +21,7 @@ public class Station {
 	private ArrayList<Line> mListMembershipLines;
 	
 	public Station(Context context, String line, String name, float x, float y, boolean terminus, ArrayList<Line> listMembershipLines){
-		
+
 		this.name=name;
 		this.line=line;
 		this.terminus=terminus;

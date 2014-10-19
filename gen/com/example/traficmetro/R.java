@@ -71,6 +71,8 @@ public final class R {
     }
     public static final class xml {
         public static final int stationdata=0x7f040000;
+        public static final int stationdata_full=0x7f040001;
+        public static final int stationdatacopie=0x7f040002;
     }
     public static final class styleable {
         /** Attributes that can be used with a View.

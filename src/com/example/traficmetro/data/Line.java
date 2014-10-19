@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PointF;
+import android.util.Log;
 
 import com.example.traficmetro.customview.LineView;
 
@@ -38,9 +39,12 @@ public class Line {
 		 */
 		ArrayList<Line> l = new ArrayList<>();
 		l.add(this);
+		
 		Station st = new Station(this.ct, line, name, x, y, terminus, l);
+		
 		this.listStations.add(st);
-		this.addLinePoint(st.getStationView().getXCenterCircle(), st.getStationView().getYCenterCircle());
+		
+		this.addLinePoint(x, y);
 	}
 	
 	public int getColor(){

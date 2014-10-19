@@ -11,7 +11,7 @@
         <Station name="Franklin D. Roosevelt" terminus="false" x="305" y="353"/>
         <Station name="Champs Elysées Clémenceau" terminus="false" x="331" y="370"/>
         <Station name="Concorde" terminus="false" x="353" y="385"/>
-        <IntermediaryPoint x="368" y="397"/>
+        <IntermediaryPoint x="368" y="399"/>
         <IntermediaryPoint x="651" y="399"/>
         <IntermediaryPoint x="694" y="433"/>
         <IntermediaryPoint x="733" y="433"/>
@@ -21,6 +21,7 @@
         <IntermediaryPoint x="912" y="455"/>
         <IntermediaryPoint x="939" y="473"/>
         <IntermediaryPoint x="990" y="473"/>
+        <Station name="Chateau de Vincennes" terminus="false" x="1054" y="519"/>
     </Line>
     <Line blueCode="179" greenCode="110" name="Métro 2" numberOfStations="25" redCode="0">
         <Station name="Porte Dauphine" terminus="true" x="130" y="307"/>
@@ -33,8 +34,8 @@
         <IntermediaryPoint x="821" y="217"/>
         <IntermediaryPoint x="821" y="279"/>
         <IntermediaryPoint x="913" y="345"/>
-        <IntermediaryPoint x="990" y="473"/>
         <IntermediaryPoint x="914" y="433"/>
+        <Station name="Nation" terminus="false" x="944" y="455"/>
     </Line>
     <Line blueCode="71" greenCode="141" name="Métro 3" numberOfStations="25" redCode="156">
         <Station name="Pont de Levallois Bécon" terminus="true" x="231" y="132"/>
@@ -77,7 +78,7 @@
         <IntermediaryPoint x="567" y="584"/>
         <IntermediaryPoint x="567" y="639"/>
     </Line>
-    <!--<Line blueCode="86" greenCode="142" name="Métro 5" numberOfStations="27" redCode="251">
+    <Line blueCode="86" greenCode="142" name="Métro 5" numberOfStations="27" redCode="251">
         <Station name="Bobigny Pablo Picasso" terminus="true" x="1056" y="123"/>
         <Station name="Boigny - Pantin R.Queneau" terminus="false" x="1023" y="147"/>
         <Station name="Eglise de Pantin" terminus="false" x="1007" y="158"/>
@@ -137,12 +138,18 @@
     </Line>
     <Line blueCode="100" greenCode="33" name="Métro 14" numberOfStations="27" redCode="75">
         <Station name="St-Lazare" terminus="true" x="407" y="274"/>
+        <IntermediaryPoint x="407" y="298"/>
+        <IntermediaryPoint x="360" y="331"/>
         <Station name="Madeleine" terminus="false" x="360" y="355"/>
         <Station name="Pyramides" terminus="false" x="460" y="360"/>
+        <IntermediaryPoint x="448" y="360"/>
+        <IntermediaryPoint x="538" y="393"/>
         <Station name="Châtelet" terminus="false" x="594" y="393"/>
-    </Line>-->
+    </Line>
+
     <!--RER-->
-    <!--<Line blueCode="72'" greenCode="200" name="RER C" numberOfStations="27" redCode="237">
+
+    <Line blueCode="72'" greenCode="200" name="RER C" numberOfStations="27" redCode="237">
         <Station name="Saint-Ouen" terminus="false" x="372" y="67"/>
         <Station name="Porte de Clichy" terminus="false" x="366" y="122"/>
         <Station name="Pereire - Levallois" terminus="false" x="285" y="180"/>
@@ -151,8 +158,16 @@
     <Line blueCode="47" greenCode="21" name="RER A" numberOfStations="25" redCode="243">
         <Station name="La Défense" terminus="false" x="73" y="178"/>
         <Station name="Charles de Gaulle Etoile" terminus="false" x="238" y="296"/>
+        <IntermediaryPoint x="283" y="328"/>
         <Station name="Auber" terminus="false" x="435" y="328"/>
+        <IntermediaryPoint x="459" y="328"/>
+        <IntermediaryPoint x="540" y="388"/>
         <Station name="Châtelet Les Halles" terminus="false" x="606" y="388"/>
+        <IntermediaryPoint x="621" y="388"/>
+        <IntermediaryPoint x="806" y="520"/>
+        <IntermediaryPoint x="912" y="447"/>
+        <IntermediaryPoint x="942" y="468"/>
+        <IntermediaryPoint x="1040" y="468"/>
     </Line>
     <Line blueCode="185" greenCode="134" name="RER B" numberOfStations="25" redCode="68">
         <Station name="Le Bourget" terminus="false" x="982" y="39"/>
@@ -170,5 +185,5 @@
         <Station name="Haussmann St-Lazare" terminus="false" x="435" y="279"/>
         <Station name="Magenta" terminus="false" x="725" y="213"/>
         <Station name="Gare du Nord" terminus="false" x="938" y="116"/>
-    </Line>-->
+    </Line>
 </Map>
