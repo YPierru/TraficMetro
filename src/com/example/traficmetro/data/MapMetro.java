@@ -2,8 +2,6 @@ package com.example.traficmetro.data;
 
 import java.util.ArrayList;
 
-import com.example.traficmetro.customview.StationView;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -15,94 +13,156 @@ import android.view.ScaleGestureDetector;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.example.traficmetro.customview.StationView;
+
+/**
+ * Represents the map drawn in the first view
+ * @author YPierru
+ *
+ */
 public class MapMetro extends RelativeLayout{
 
 	private ArrayList<Line> listLines;
-	private ScaleGestureDetector mScaleDetector;
-	private float mScaleFactor = 1.f;
-    private float mPosX;
-    private float mPosY;
-    
-    private Paint p= new Paint();
-    private Rect rect;
-    private float mLastTouchX;
-    private float mLastTouchY;
-    int[] xyLoc = new int[2];
-    private static final int INVALID_POINTER_ID = -1;
 
-    // The active pointer is the one currently moving our object.
-    private int mActivePointerId = INVALID_POINTER_ID;
+	//X coordinate most to the right
+    private int xMaxRight;
+    //X coordinate most to the left
+    private int xMaxLeft;
+    //Y coordinate most to the top
+    private int yMaxTop;
+    //Y coordinate most to the bottom 
+    private int yMaxBottom;
+    
+    private int statusBarHeight;
+    private int heightScreen;
+    private int widthScreen;
+    
+    /**
+     * Var used for the pinch-to-zoom
+     */
+    private ScaleGestureDetector scaleDetector;
+	private float scaleFactor = 1.f;
+	private float minScaleFactor=0.81f;
+	private float maxScaleFactor=3.0f;
 	
-	public MapMetro(Context context){
+	/**
+	 * Var used for moving the map
+	 */
+    private float lastTouchX;
+    private float lastTouchY;
+    private float posX;
+    private float posY;
+    private static final int INVALID_POINTER_ID = -1;
+    private int activePointerId = INVALID_POINTER_ID;
+	
+    
+    
+	public MapMetro(Context context, int statusBarHeight){
 		super(context);
 		this.setBackgroundColor(Color.WHITE);
-		this.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
-		/*this.setHorizontalScrollBarEnabled(true);
-		this.setVerticalScrollBarEnabled(true);
-		TypedArray a = context.obtainStyledAttributes(R.styleable.View);
-	    a.recycle();*/
-	    setWillNotDraw(false);
+		this.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
+
+        setHeightWidthScreen();
+        initMaxCooValue();
+        
+		this.statusBarHeight=statusBarHeight;
+	    
 		this.listLines = new ArrayList<>();
-		mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
+		scaleDetector = new ScaleGestureDetector(context, new ScaleListener());
+	}
+	
+	/**
+	 * Set the H/W var
+	 */
+	private void setHeightWidthScreen(){
+		this.widthScreen = getResources().getDisplayMetrics().widthPixels;
+        this.heightScreen = getResources().getDisplayMetrics().heightPixels;
+	}
+	
+	/**
+	 * Init the max coo value.
+	 */
+	private void initMaxCooValue(){
+        this.xMaxLeft=this.widthScreen;
+        this.xMaxRight=0;
+		this.yMaxTop=this.heightScreen;
+		this.yMaxBottom=0;
 	}
 	
 	@Override
     public boolean onTouchEvent(MotionEvent ev) {
         // Let the ScaleGestureDetector inspect all events.
-        mScaleDetector.onTouchEvent(ev);
+        scaleDetector.onTouchEvent(ev);
         
         final int action = ev.getAction();
         
+        /**
+         * Define the new coordinate (posX/pos) of the map
+         */
         switch (action & MotionEvent.ACTION_MASK) {
+        
 	        case MotionEvent.ACTION_DOWN: {
 	            final float x = ev.getX();
 	            final float y = ev.getY();
 	            
-	            mLastTouchX = x;
-	            mLastTouchY = y;
-	            mActivePointerId = ev.getPointerId(0);
+	            lastTouchX = x;
+	            lastTouchY = y;
+	            activePointerId = ev.getPointerId(0);
 	            break;
 	        }
 	            
 	        case MotionEvent.ACTION_MOVE: {
-	            final int pointerIndex = ev.findPointerIndex(mActivePointerId);
+	            final int pointerIndex = ev.findPointerIndex(activePointerId);
 	            final float x = ev.getX(pointerIndex);
 	            final float y = ev.getY(pointerIndex);
 	
 	            // Only move if the ScaleGestureDetector isn't processing a gesture.
-	            if (!mScaleDetector.isInProgress()) {
-	                final float dx = x - mLastTouchX;
-	                final float dy = y - mLastTouchY;
+	            if (!scaleDetector.isInProgress()) {
+	                final float dx = x - lastTouchX;
+	                final float dy = y - lastTouchY;
 	
-	                mPosX += dx;
-	                mPosY += dy;
+	                posX += dx;
+	                posY += dy;
 	
 	                invalidate();
 	            }
 	            
-	            if(mPosX<-68+StationView.getDiameter()/2){
-	            	Log.d("DEBUUUUUG", "MPOSX="+mPosX);
-	            	mPosX=-68+StationView.getDiameter()/2;
+
+	            /*xMaxLeft*=mScaleFactor;
+	            xMaxRight*=mScaleFactor;
+	            yMaxBottom*=mScaleFactor;
+	            yMaxTop*=mScaleFactor;*/
+
+	            /*Log.d("DEBUUUUG", "mPosX="+mPosY);
+	            if(mPosX<(-xMaxLeft+StationView.getDiameter()/2)*mScaleFactor){
+	            	mPosX=(-xMaxLeft+StationView.getDiameter()/2)*mScaleFactor;
+	            }
+	            if(mPosX+StationView.getDiameter()/2+xMaxRight*mScaleFactor>widthScreen){
+	            	mPosX=widthScreen-StationView.getDiameter()/2-xMaxRight*mScaleFactor;
 	            }
 	            
-	            if(mPosY<-182+StationView.getDiameter()/2){
-	            	Log.d("DEBUUUUUG", "MPOSY="+mPosY);
-	            	mPosY=-182+StationView.getDiameter()/2;
+	            if(mPosY<(-yMaxTop+StationView.getDiameter()/2)*mScaleFactor){
+	            	mPosY=(-yMaxTop+StationView.getDiameter()/2)*mScaleFactor;
 	            }
+	            if(mPosY+StationView.getDiameter()/2-yMaxBottom-statusBarHeight-(yMaxBottom-yMaxTop)>widthScreen){
+	            	mPosY=widthScreen-StationView.getDiameter()/2+yMaxBottom+statusBarHeight+(yMaxBottom-yMaxTop);
+	            	//Log.d("DEEEEEBUUUUUG","******************");
+	            }*/
+	            
 	
-	            mLastTouchX = x;
-	            mLastTouchY = y;
+	            lastTouchX = x;
+	            lastTouchY = y;
 	
 	            break;
 	        }
 	            
 	        case MotionEvent.ACTION_UP: {
-	            mActivePointerId = INVALID_POINTER_ID;
+	            activePointerId = INVALID_POINTER_ID;
 	            break;
 	        }
 	            
 	        case MotionEvent.ACTION_CANCEL: {
-	            mActivePointerId = INVALID_POINTER_ID;
+	            activePointerId = INVALID_POINTER_ID;
 	            break;
 	        }
 	        
@@ -110,13 +170,13 @@ public class MapMetro extends RelativeLayout{
 	            final int pointerIndex = (ev.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) 
 	                    >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
 	            final int pointerId = ev.getPointerId(pointerIndex);
-	            if (pointerId == mActivePointerId) {
+	            if (pointerId == activePointerId) {
 	                // This was our active pointer going up. Choose a new
 	                // active pointer and adjust accordingly.
 	                final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
-	                mLastTouchX = ev.getX(newPointerIndex);
-	                mLastTouchY = ev.getY(newPointerIndex);
-	                mActivePointerId = ev.getPointerId(newPointerIndex);
+	                lastTouchX = ev.getX(newPointerIndex);
+	                lastTouchY = ev.getY(newPointerIndex);
+	                activePointerId = ev.getPointerId(newPointerIndex);
 	            }
 	            break;
 	        }
@@ -130,31 +190,65 @@ public class MapMetro extends RelativeLayout{
 	    super.onDraw(canvas);
 	    
 	    canvas.save();
-        canvas.translate(mPosX, mPosY);
-	    canvas.scale(mScaleFactor, mScaleFactor);
+	    
+	    //Set the new coordinate
+        canvas.translate(posX, posY);
+        
+        //Multiply the coordinate with the scale factor
+	    canvas.scale(scaleFactor, scaleFactor);
 
+	    //Each lines are drawn
 	    for(int i=0;i<this.listLines.size();i++){
 	    	
 	    	this.listLines.get(i).getLineView().draw(canvas);
 	    	
+	    	//Each stations are drawn
 	    	for(int j=0;j<this.listLines.get(i).getListStations().size();j++){
 	    		this.listLines.get(i).getListStations().get(j).getStationView().draw(canvas);
 	    	}
 	    	
 	    }
-
-	   // p.setColor(Color.RED);
-	    
-	    //canvas.drawRect(rect,p);
         
 	    canvas.restore();
 	}
 	
+	/**
+	 * Add a new line to the map.
+	 * @param line
+	 */
 	public void addLine(Line line){
+		searchMaxCoo(line);
 		this.listLines.add(line);
 	}
 	
+	/**
+	 * Search and set values of the max (x left/right, y top/bottom) coo
+	 * @param line
+	 */
+	private void searchMaxCoo(Line line){
+		ArrayList<Station> ls = line.getListStations();
+		
+		for(int i=0;i<ls.size();i++){
+			if(xMaxLeft>ls.get(i).getStationView().getXCenterCircle()){
+				xMaxLeft=(int)ls.get(i).getStationView().getXCenterCircle();
+			}
+			if(xMaxRight<ls.get(i).getStationView().getXCenterCircle()){
+				xMaxRight=(int)ls.get(i).getStationView().getXCenterCircle();
+			}
+			if(yMaxTop>ls.get(i).getStationView().getYCenterCircle()){
+				yMaxTop=(int)ls.get(i).getStationView().getYCenterCircle();
+			}
+			if(yMaxBottom<ls.get(i).getStationView().getYCenterCircle()){
+				yMaxBottom=(int)ls.get(i).getStationView().getYCenterCircle();
+			}
+		}
+		
+	}
 	
+	/**
+	 * Add the view (lineView and stationView) to the relativeLayout.
+	 * Is used for the touch event on the map
+	 */
 	public void buildLayout(){
 		ArrayList<Station> listStationsOnCurrentLine;
 		
@@ -174,10 +268,10 @@ public class MapMetro extends RelativeLayout{
 	private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
 	    @Override
 	    public boolean onScale(ScaleGestureDetector detector) {
-	        mScaleFactor *= detector.getScaleFactor();
+	        scaleFactor *= detector.getScaleFactor();
 
 	        // Don't let the object get too small or too large.
-	        mScaleFactor = Math.max(0.81f, Math.min(mScaleFactor, 3.0f));
+	        scaleFactor = Math.max(minScaleFactor, Math.min(scaleFactor, maxScaleFactor));
 	        invalidate();
 	        return true;
 	    }
