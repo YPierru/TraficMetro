@@ -2,14 +2,15 @@ package com.example.traficmetro.customview;
 
 import java.util.ArrayList;
 
+import com.example.traficmetro.Constants;
+
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
-import android.graphics.Rect;
+import android.util.Log;
 import android.view.View;
 
 
@@ -20,7 +21,6 @@ import android.view.View;
  */
 public class LineView extends View {
 
-	private static final int HEIGHT = 5;
 	private Paint paint;
 	private Path path;
 	private CornerPathEffect cornerPathEffect;
@@ -44,14 +44,14 @@ public class LineView extends View {
 		 * Settings some graphic parameters
 		 */
 		this.paint.setColor(this.color);
-		this.paint.setStrokeWidth(HEIGHT);
+		this.paint.setStrokeWidth(Constants.LINEVIEW_HEIGHT);
 		this.paint.setStyle(Paint.Style.STROKE);
 		this.paint.setDither(true);
 		this.paint.setStrokeJoin(Paint.Join.ROUND);
 		this.paint.setStrokeCap(Paint.Cap.ROUND);
 		this.paint.setPathEffect(this.cornerPathEffect);
 		this.paint.setAntiAlias(true);
-
+		
 		/**
 		 * Draw the line
 		 */

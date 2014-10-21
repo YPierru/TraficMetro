@@ -13,6 +13,7 @@ import android.view.ScaleGestureDetector;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.example.traficmetro.Constants;
 import com.example.traficmetro.customview.StationView;
 
 /**
@@ -21,6 +22,10 @@ import com.example.traficmetro.customview.StationView;
  *
  */
 public class MapMetro extends RelativeLayout{
+		
+	private final float MINIMUM_SCALE_FACTOR=0.81f;
+	private final float MAXIMUM_SCALE_FACTOR=3.1f;
+	private final float SIZE_DIVISOR=1.2f;
 
 	private ArrayList<Line> listLines;
 
@@ -42,8 +47,6 @@ public class MapMetro extends RelativeLayout{
      */
     private ScaleGestureDetector scaleDetector;
 	private float scaleFactor = 1.f;
-	private float minScaleFactor=0.81f;
-	private float maxScaleFactor=3.0f;
 	
 	/**
 	 * Var used for moving the map
@@ -127,28 +130,25 @@ public class MapMetro extends RelativeLayout{
 	                invalidate();
 	            }
 	            
-
-	            /*xMaxLeft*=mScaleFactor;
-	            xMaxRight*=mScaleFactor;
-	            yMaxBottom*=mScaleFactor;
-	            yMaxTop*=mScaleFactor;*/
-
-	            /*Log.d("DEBUUUUG", "mPosX="+mPosY);
-	            if(mPosX<(-xMaxLeft+StationView.getDiameter()/2)*mScaleFactor){
-	            	mPosX=(-xMaxLeft+StationView.getDiameter()/2)*mScaleFactor;
-	            }
-	            if(mPosX+StationView.getDiameter()/2+xMaxRight*mScaleFactor>widthScreen){
-	            	mPosX=widthScreen-StationView.getDiameter()/2-xMaxRight*mScaleFactor;
+	            /**
+	             * Replace the map when it's out of the screen
+	             */
+	            
+	            if(posX<=0-xMaxRight*scaleFactor/SIZE_DIVISOR){
+	            	posX=-xMaxRight*scaleFactor/SIZE_DIVISOR;
 	            }
 	            
-	            if(mPosY<(-yMaxTop+StationView.getDiameter()/2)*mScaleFactor){
-	            	mPosY=(-yMaxTop+StationView.getDiameter()/2)*mScaleFactor;
+	            if(posX>=(widthScreen-xMaxLeft*scaleFactor)/SIZE_DIVISOR){
+	            	posX=(widthScreen-xMaxLeft*scaleFactor)/SIZE_DIVISOR;
 	            }
-	            if(mPosY+StationView.getDiameter()/2-yMaxBottom-statusBarHeight-(yMaxBottom-yMaxTop)>widthScreen){
-	            	mPosY=widthScreen-StationView.getDiameter()/2+yMaxBottom+statusBarHeight+(yMaxBottom-yMaxTop);
-	            	//Log.d("DEEEEEBUUUUUG","******************");
-	            }*/
 	            
+	            if(posY<=-yMaxBottom*scaleFactor/SIZE_DIVISOR){
+	            	posY=-yMaxBottom*scaleFactor/SIZE_DIVISOR;
+	            }
+	            
+	            if(posY>=(heightScreen-statusBarHeight-yMaxTop*scaleFactor)/SIZE_DIVISOR){
+	            	posY=(heightScreen-statusBarHeight-yMaxTop*scaleFactor)/SIZE_DIVISOR;
+	            }
 	
 	            lastTouchX = x;
 	            lastTouchY = y;
@@ -250,7 +250,7 @@ public class MapMetro extends RelativeLayout{
 	 * Is used for the touch event on the map
 	 */
 	public void buildLayout(){
-		ArrayList<Station> listStationsOnCurrentLine;
+		/*ArrayList<Station> listStationsOnCurrentLine;
 		
 		for(int i=0;i<this.listLines.size();i++){
 			
@@ -261,7 +261,7 @@ public class MapMetro extends RelativeLayout{
 			}
 			
 			this.addView(this.listLines.get(i).getLineView());
-		}
+		}*/
 		
 	}
 
@@ -271,7 +271,7 @@ public class MapMetro extends RelativeLayout{
 	        scaleFactor *= detector.getScaleFactor();
 
 	        // Don't let the object get too small or too large.
-	        scaleFactor = Math.max(minScaleFactor, Math.min(scaleFactor, maxScaleFactor));
+	        scaleFactor = Math.max(MINIMUM_SCALE_FACTOR, Math.min(scaleFactor,MAXIMUM_SCALE_FACTOR));
 	        invalidate();
 	        return true;
 	    }

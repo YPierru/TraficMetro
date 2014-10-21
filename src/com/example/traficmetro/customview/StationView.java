@@ -1,5 +1,7 @@
 package com.example.traficmetro.customview;
 
+import com.example.traficmetro.Constants;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -13,7 +15,7 @@ import android.view.View;
  */
 public class StationView extends View {
 	
-	private static final int DIAMETER=15;
+	//private static final int DIAMETER=15;
 	private float xCenterCircle;
 	private float x,y;
 	private float yCenterCircle;
@@ -35,17 +37,9 @@ public class StationView extends View {
 	@Override
 	public void onDraw(Canvas canvas) {
 		this.paint.setColor(this.color);
-		this.paint.setStrokeWidth(DIAMETER);
+		this.paint.setStrokeWidth(Constants.STATIONVIEW_DIAMETER);
 
-		canvas.drawCircle(this.xCenterCircle, this.yCenterCircle, DIAMETER/2, this.paint);
-	}
-	
-	/**
-	 * Return the diamater of a station
-	 * @return diamater
-	 */
-	public static int getDiameter(){
-		return DIAMETER;
+		canvas.drawCircle(this.xCenterCircle, this.yCenterCircle, Constants.STATIONVIEW_RADIUS, this.paint);
 	}
 
 	/**
