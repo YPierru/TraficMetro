@@ -204,7 +204,7 @@ public class MapMetro extends RelativeLayout{
 	    	
 	    	//Each stations are drawn
 	    	for(int j=0;j<this.listLines.get(i).getListStations().size();j++){
-	    		this.listLines.get(i).getListStations().get(j).getStationView().draw(canvas);
+	    		this.listLines.get(i).getListStations().get(j).getStationView().mydraw(canvas,posX,posY,scaleFactor);
 	    	}
 	    	
 	    }
@@ -250,7 +250,7 @@ public class MapMetro extends RelativeLayout{
 	 * Is used for the touch event on the map
 	 */
 	public void buildLayout(){
-		/*ArrayList<Station> listStationsOnCurrentLine;
+		ArrayList<Station> listStationsOnCurrentLine;
 		
 		for(int i=0;i<this.listLines.size();i++){
 			
@@ -261,7 +261,7 @@ public class MapMetro extends RelativeLayout{
 			}
 			
 			this.addView(this.listLines.get(i).getLineView());
-		}*/
+		}
 		
 	}
 

@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Toast;
 
@@ -33,15 +34,15 @@ public class Station {
 		this.mListMembershipLines=listMembershipLines;
 		
 		if(this.mListMembershipLines.size()>1){
-			this.stationView = new StationView(context, x, y, Color.argb(255,255, 255, 255));
+			this.stationView = new StationView(context, x, y, Color.argb(255,255, 255, 255), this);
 		}else{
-			this.stationView = new StationView(context, x, y, this.mListMembershipLines.get(0).getColor());
+			this.stationView = new StationView(context, x, y, this.mListMembershipLines.get(0).getColor(), this);
 		}
 		
 		/**
 		 * Display informations when the user touch the station
 		 */
-		//this.stationView.setOnTouchListener(new OnTouchStationListener(context, this.name, this.line));
+		//this.stationView.setOnTouchListener(new OnTouchStationListener(context, this.name, this.lineName));
 	}
 
 	/**
@@ -96,9 +97,21 @@ public class Station {
 		
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
-			Toast.makeText(mCt, "Station : "+mName+"\nLigne : "+mLine, Toast.LENGTH_SHORT).show();
-			;
-			return false;
+			
+			switch (event.getAction()) {
+		    case MotionEvent.ACTION_DOWN:
+		    	Log.d("DEBUUUUUUG", "ACTION_DOWN");
+		        break;
+		    case MotionEvent.ACTION_UP:
+		    	Log.d("DEBUUUUUUG", "ACTION-up");
+		        v.performClick();
+		        break;
+		    default:
+		        break;
+		    }
+		    return true;
+			//Toast.makeText(mCt, "Station : "+mName+"\nLigne : "+mLine, Toast.LENGTH_SHORT).show();
+			//Log.d("DEBUUUUUUG", "Station : "+mName+"\nLigne : "+mLine);
 		}
 
 	}
