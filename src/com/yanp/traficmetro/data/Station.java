@@ -4,12 +4,6 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
-import android.widget.Toast;
 
 import com.yanp.traficmetro.customview.StationView;
 
@@ -81,7 +75,7 @@ public class Station {
 	}
 	
 	public void popPanelComments(){
-		this.mapMetro.setPanelTestVisibility(true);
+		this.mapMetro.addInformationsPanel();
 	}
 	
 	

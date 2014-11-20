@@ -2,12 +2,9 @@ package com.yanp.traficmetro.customview;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 import com.yanp.traficmetro.Constants;
 import com.yanp.traficmetro.data.Station;

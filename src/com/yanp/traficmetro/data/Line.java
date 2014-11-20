@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PointF;
-import android.util.Log;
 
 import com.yanp.traficmetro.customview.LineView;
 

@@ -13,9 +13,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.yanp.traficmetro.Constants;
 import com.yanp.traficmetro.R;
 
 /**
@@ -24,6 +28,8 @@ import com.yanp.traficmetro.R;
  *
  */
 public class MapMetro extends RelativeLayout{
+	
+	private MapMetro instance=this;
 		
 	private final float MINIMUM_SCALE_FACTOR=0.81f;
 	private final float MAXIMUM_SCALE_FACTOR=3.1f;
@@ -60,7 +66,15 @@ public class MapMetro extends RelativeLayout{
     private static final int INVALID_POINTER_ID = -1;
     private int activePointerId = INVALID_POINTER_ID;    
     
+    /**
+     * Graphics elements
+     */
     private ListView listViewComments;
+    private TextView textViewInfoStation;
+    private Button buttonClosePanel;
+    private Button buttonAddComment;
+    
+    private boolean panelInfoDisplay=false;
     
 	public MapMetro(Context context, int statusBarHeight){
 		super(context);
@@ -76,14 +90,29 @@ public class MapMetro extends RelativeLayout{
 		scaleDetector = new ScaleGestureDetector(context, new ScaleListener());
 	}	
 	
-	public void addPanelTest(){
+	public void addInformationsPanel(){
+		this.panelInfoDisplay=true;
 		
+		this.setBackgroundColor(Color.argb(128, 255, 0, 0));
+		
+		addListViewComments();
+		addTextViewInfoStation();
+		addButtonAddComment();
+		
+	}
+	
+	private void addListViewComments(){
 		this.listViewComments = new ListView(getContext());
+		
 		LayoutParams params = new LayoutParams(
 		        LayoutParams.MATCH_PARENT,      
 		        LayoutParams.MATCH_PARENT
 		);
-		params.setMargins(75,75,75,75);
+		params.setMargins(	(int)(this.widthScreen*Constants.MARGIN_PURCENTAGE_LEFT_LV),//0.07
+							(int)(this.heightScreen*Constants.MARGIN_PURCENTAGE_TOP_LV),//0.3
+							(int)(this.widthScreen*Constants.MARGIN_PURCENTAGE_RIGHT_LV),//0.07
+							(int)(this.heightScreen*Constants.MARGIN_PURCENTAGE_BOTTOM_LV));//0.07
+		
 		this.listViewComments.setLayoutParams(params);
 		this.listViewComments.setBackgroundColor(Color.LTGRAY);
 	    String[] values = new String[50];
@@ -104,15 +133,70 @@ public class MapMetro extends RelativeLayout{
 
 	    });
 	    this.addView(this.listViewComments);
-		
 	}
 	
-	public void setPanelTestVisibility(boolean beVisible){
-		if(beVisible){
-			this.listViewComments.setVisibility(View.VISIBLE);
-		}else{
-			this.listViewComments.setVisibility(View.INVISIBLE);
-		}
+	private void addTextViewInfoStation(){
+		this.textViewInfoStation = new TextView(getContext());
+		
+		LayoutParams params = new LayoutParams(
+		        LayoutParams.MATCH_PARENT,      
+		        LayoutParams.MATCH_PARENT
+		);
+		params.setMargins(	(int)(this.widthScreen*Constants.MARGIN_PURCENTAGE_LEFT_TV),
+							(int)(this.heightScreen*Constants.MARGIN_PURCENTAGE_TOP_TV),
+							(int)(this.widthScreen*Constants.MARGIN_PURCENTAGE_RIGHT_TV),
+							(int)(this.heightScreen*Constants.MARGIN_PURCENTAGE_BOTTOM_TV));
+		
+		this.textViewInfoStation.setLayoutParams(params);
+		this.textViewInfoStation.setBackgroundColor(Color.LTGRAY);
+		
+		this.textViewInfoStation.setText("BLABLABLA JE SUIS UNE STATION :3");
+		
+		this.addView(this.textViewInfoStation);
+	}
+	
+	private void addButtonAddComment(){
+		this.buttonAddComment = new Button(getContext());
+		
+		LayoutParams params = new LayoutParams(
+		        LayoutParams.WRAP_CONTENT,      
+		        LayoutParams.WRAP_CONTENT
+		);
+		
+		params.setMargins(	(int)(this.widthScreen*Constants.MARGIN_PURCENTAGE_LEFT_BTN),
+							(int)(this.heightScreen*Constants.MARGIN_PURCENTAGE_TOP_BTN),
+							(int)(this.widthScreen*Constants.MARGIN_PURCENTAGE_RIGHT_BTN),
+							(int)(this.heightScreen*Constants.MARGIN_PURCENTAGE_BOTTOM_BTN));
+		
+		this.buttonAddComment.setLayoutParams(params);
+		this.buttonAddComment.setBackgroundResource(R.drawable.round_button_add);
+		this.buttonAddComment.setTextColor(Color.WHITE);
+		this.buttonAddComment.setTextSize(26);
+		this.buttonAddComment.setText("+");
+		
+		this.buttonAddComment.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				Toast.makeText(getContext(), "Ajout d'un comzz", Toast.LENGTH_SHORT).show();
+				return false;
+			}
+		});
+
+		this.addView(this.buttonAddComment);
+	}
+	
+	public void removePanelInfo(){
+
+		this.setBackgroundColor(Color.WHITE);
+		this.instance.removeView(listViewComments);
+		this.instance.removeView(textViewInfoStation);
+		this.instance.removeView(buttonAddComment);
+		this.panelInfoDisplay = false;
+	}
+	
+	public boolean isPanelInfoDisplay(){
+		return this.panelInfoDisplay;
 	}
 	
 	
@@ -306,8 +390,8 @@ public class MapMetro extends RelativeLayout{
 		}
 		
 		//
-		this.addPanelTest();
-		this.setPanelTestVisibility(false);
+		this.addInformationsPanel();
+		//this.setInformationPanelVisibility(true);
 		
 	}
 

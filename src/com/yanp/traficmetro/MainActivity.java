@@ -140,4 +140,13 @@ public class MainActivity extends Activity {
 		this.mapMetro.buildLayout();
 	}	
 	
+	@Override
+	public void onBackPressed() {
+		if(this.mapMetro.isPanelInfoDisplay()){
+			this.mapMetro.removePanelInfo();
+		}else{
+			super.onBackPressed();
+		}
+	}
+	
 }
