@@ -22,6 +22,7 @@ import com.yanp.traficmetro.data.MapMetro;
 public class MainActivity extends Activity {
 
 	private MapMetro mapMetro;
+	private AnimationManager animationManager;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,8 @@ public class MainActivity extends Activity {
 	
 		super.onCreate(savedInstanceState);
 		
-		this.mapMetro = new MapMetro(this,getStatusBarHeight());
+		this.animationManager = new AnimationManager(this);
+		this.mapMetro = new MapMetro(this,getStatusBarHeight(), this.animationManager);
 
 		try {
 			createLayout();
@@ -40,7 +42,6 @@ public class MainActivity extends Activity {
 		}
 		
 		setContentView(this.mapMetro);
-		//setContentView(R.layout.activity_main);
 	}
 	
 	/**
@@ -140,6 +141,11 @@ public class MainActivity extends Activity {
 		this.mapMetro.buildLayout();
 	}	
 	
+	/**
+	 * Override the back button.
+	 * If the panel is display, remove it.
+	 * Else, natural behavior
+	 */
 	@Override
 	public void onBackPressed() {
 		if(this.mapMetro.isPanelInfoDisplay()){

@@ -2,6 +2,7 @@ package com.yanp.traficmetro.data;
 
 import java.util.ArrayList;
 
+import android.animation.LayoutTransition;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -10,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -19,8 +21,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.yanp.traficmetro.AnimationManager;
 import com.yanp.traficmetro.Constants;
 import com.yanp.traficmetro.R;
+import com.yanp.traficmetro.customview.UNUSEDPanelButtonAddComment;
+import com.yanp.traficmetro.customview.UNUSEDPanelInfoStations;
+import com.yanp.traficmetro.customview.UNUSEDPanelListComments;
 
 /**
  * Represents the map drawn in the first view
@@ -71,36 +77,44 @@ public class MapMetro extends RelativeLayout{
      */
     private ListView listViewComments;
     private TextView textViewInfoStation;
-    private Button buttonClosePanel;
     private Button buttonAddComment;
     
     private boolean panelInfoDisplay=false;
+
+	private AnimationManager animationManager;
     
-	public MapMetro(Context context, int statusBarHeight){
+	public MapMetro(Context context, int statusBarHeight, AnimationManager animationManager){
 		super(context);
 		this.setBackgroundColor(Color.WHITE);
 		this.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
 
         setHeightWidthScreen();
         initMaxCooValue();
-        
 		this.statusBarHeight=statusBarHeight;
+		this.animationManager=animationManager;
+
+		requestLayout();
 	    
 		this.listLines = new ArrayList<>();
 		scaleDetector = new ScaleGestureDetector(context, new ScaleListener());
 	}	
 	
+	/**
+	 * Display the informations panel on the screen
+	 */
 	public void addInformationsPanel(){
 		this.panelInfoDisplay=true;
-		
-		this.setBackgroundColor(Color.argb(128, 255, 0, 0));
-		
+
 		addListViewComments();
 		addTextViewInfoStation();
 		addButtonAddComment();
 		
 	}
 	
+	
+	/**
+	 * Add and display the list of the comments for the station selected
+	 */
 	private void addListViewComments(){
 		this.listViewComments = new ListView(getContext());
 		
@@ -132,9 +146,13 @@ public class MapMetro extends RelativeLayout{
 	        }
 
 	    });
+	    this.listViewComments.startAnimation(this.animationManager.getAnimation(R.anim.animationlistappear));
 	    this.addView(this.listViewComments);
 	}
 	
+	/**
+	 * Add and display informations about the station selected
+	 */
 	private void addTextViewInfoStation(){
 		this.textViewInfoStation = new TextView(getContext());
 		
@@ -151,10 +169,13 @@ public class MapMetro extends RelativeLayout{
 		this.textViewInfoStation.setBackgroundColor(Color.LTGRAY);
 		
 		this.textViewInfoStation.setText("BLABLABLA JE SUIS UNE STATION :3");
-		
+		this.textViewInfoStation.startAnimation(this.animationManager.getAnimation(R.anim.animationinfostationappear));
 		this.addView(this.textViewInfoStation);
 	}
 	
+	/**
+	 * Add and display the button for adding a new comment
+	 */
 	private void addButtonAddComment(){
 		this.buttonAddComment = new Button(getContext());
 		
@@ -183,17 +204,27 @@ public class MapMetro extends RelativeLayout{
 			}
 		});
 
+		this.buttonAddComment.startAnimation(this.animationManager.getAnimation(R.anim.animationbtnaddappear));
 		this.addView(this.buttonAddComment);
 	}
 	
+	
+	/**
+	 * Remove the panels
+	 */
 	public void removePanelInfo(){
 
-		this.setBackgroundColor(Color.WHITE);
-		this.instance.removeView(listViewComments);
-		this.instance.removeView(textViewInfoStation);
-		this.instance.removeView(buttonAddComment);
+		this.textViewInfoStation.startAnimation(this.animationManager.getAnimation(R.anim.animationinfostationdisappear));
+		this.listViewComments.startAnimation(this.animationManager.getAnimation(R.anim.animationlistdisappear));
+		this.buttonAddComment.startAnimation(this.animationManager.getAnimation(R.anim.animationbtnadddisappear));
+
+		this.removeView(this.textViewInfoStation);
+		this.removeView(this.listViewComments);
+		this.removeView(this.buttonAddComment);
+
 		this.panelInfoDisplay = false;
 	}
+	
 	
 	public boolean isPanelInfoDisplay(){
 		return this.panelInfoDisplay;
@@ -390,7 +421,7 @@ public class MapMetro extends RelativeLayout{
 		}
 		
 		//
-		this.addInformationsPanel();
+		//this.addInformationsPanel();
 		//this.setInformationPanelVisibility(true);
 		
 	}
