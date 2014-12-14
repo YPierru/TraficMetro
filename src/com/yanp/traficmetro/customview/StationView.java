@@ -80,10 +80,26 @@ public class StationView extends View {
 		this.yDynamic=(this.yStatic*this.scaleFactor+posY);
 		this.draw(canvas);
 	}
-	
-	 @Override
-    public boolean onTouchEvent(MotionEvent event) {
 
+	/**
+	 * Returns the X coordinate of the station (the center of the circle)
+	 * @return X coo center circle
+	 */
+	public float getXCenterCircle() {
+		return this.xStatic;
+	}
+
+	/**
+	 * Returns the Y coordinate of the station (the center of the circle)
+	 * @return Y coo center circle
+	 */
+	public float getYCenterCircle() {
+		return this.yStatic;
+	}
+	
+	
+	@Override
+    public boolean onTouchEvent(MotionEvent event) {
 		 switch(event.getAction()){
 		 
 		 case MotionEvent.ACTION_DOWN:{
@@ -105,21 +121,5 @@ public class StationView extends View {
 		 
         return false;
     }
-
-	/**
-	 * Returns the X coordinate of the station (the center of the circle)
-	 * @return X coo center circle
-	 */
-	public float getXCenterCircle() {
-		return this.xStatic;
-	}
-
-	/**
-	 * Returns the Y coordinate of the station (the center of the circle)
-	 * @return Y coo center circle
-	 */
-	public float getYCenterCircle() {
-		return this.yStatic;
-	}
 	
 }

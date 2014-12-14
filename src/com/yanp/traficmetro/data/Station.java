@@ -78,43 +78,4 @@ public class Station {
 		this.mapMetro.addInformationsPanel();
 	}
 	
-	
-	/**
-	 * Manage the touch on the station
-	 * @author YPierru
-	 *
-	 */
-	/*public class OnTouchStationListener implements OnTouchListener {
-		
-		private Context mCt;
-		private String mName;
-		private String mLine;
-		
-		public OnTouchStationListener(Context ct, String name, String line){
-			mCt=ct;
-			mName=name;
-			mLine=line;
-		}
-		
-		@Override
-		public boolean onTouch(View v, MotionEvent event) {
-			
-			switch (event.getAction()) {
-		    case MotionEvent.ACTION_DOWN:
-		    	Log.d("DEBUUUUUUG", "ACTION_DOWN");
-		        break;
-		    case MotionEvent.ACTION_UP:
-		    	Log.d("DEBUUUUUUG", "ACTION-up");
-		        v.performClick();
-		        break;
-		    default:
-		        break;
-		    }
-		    return true;
-			//Toast.makeText(mCt, "Station : "+mName+"\nLigne : "+mLine, Toast.LENGTH_SHORT).show();
-			//Log.d("DEBUUUUUUG", "Station : "+mName+"\nLigne : "+mLine);
-		}
-
-	}*/
-	
 }

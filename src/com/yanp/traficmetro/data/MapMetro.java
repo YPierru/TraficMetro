@@ -2,7 +2,6 @@ package com.yanp.traficmetro.data;
 
 import java.util.ArrayList;
 
-import android.animation.LayoutTransition;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,7 +10,6 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -24,9 +22,10 @@ import android.widget.Toast;
 import com.yanp.traficmetro.AnimationManager;
 import com.yanp.traficmetro.Constants;
 import com.yanp.traficmetro.R;
-import com.yanp.traficmetro.customview.UNUSEDPanelButtonAddComment;
-import com.yanp.traficmetro.customview.UNUSEDPanelInfoStations;
-import com.yanp.traficmetro.customview.UNUSEDPanelListComments;
+import com.yanp.traficmetro.customview.GreyPanel;
+import com.yanp.traficmetro.customview.PanelButtonAddComment;
+import com.yanp.traficmetro.customview.PanelInfoStations;
+import com.yanp.traficmetro.customview.PanelListComments;
 
 /**
  * Represents the map drawn in the first view
@@ -34,10 +33,8 @@ import com.yanp.traficmetro.customview.UNUSEDPanelListComments;
  *
  */
 public class MapMetro extends RelativeLayout{
-	
-	private MapMetro instance=this;
 		
-	private final float MINIMUM_SCALE_FACTOR=0.81f;
+	private final float MINIMUM_SCALE_FACTOR=1.50f;//0.81
 	private final float MAXIMUM_SCALE_FACTOR=3.1f;
 	private final float SIZE_DIVISOR=1.2f;
 
@@ -56,11 +53,13 @@ public class MapMetro extends RelativeLayout{
     private int heightScreen;
     private int widthScreen;
     
+    private boolean touchEnable=true;
+    
     /**
      * Var used for the pinch-to-zoom
      */
     private ScaleGestureDetector scaleDetector;
-	private float scaleFactor = 1.f;
+	private float scaleFactor = 1.50f;
 	
 	/**
 	 * Var used for moving the map
@@ -75,9 +74,11 @@ public class MapMetro extends RelativeLayout{
     /**
      * Graphics elements
      */
-    private ListView listViewComments;
-    private TextView textViewInfoStation;
-    private Button buttonAddComment;
+    
+    private PanelButtonAddComment buttonAddComment;
+    private GreyPanel greyPanel;
+    private PanelInfoStations panelInfoStations;
+    private PanelListComments panelListComments;
     
     private boolean panelInfoDisplay=false;
 
@@ -87,13 +88,20 @@ public class MapMetro extends RelativeLayout{
 		super(context);
 		this.setBackgroundColor(Color.WHITE);
 		this.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
+		
 
         setHeightWidthScreen();
         initMaxCooValue();
 		this.statusBarHeight=statusBarHeight;
 		this.animationManager=animationManager;
-
+		
+		
 		requestLayout();
+		
+		this.greyPanel=new GreyPanel(getContext(), this.animationManager, this);
+		this.panelInfoStations=new PanelInfoStations(getContext(), this.widthScreen, this.heightScreen, this.animationManager);
+	    this.buttonAddComment = new PanelButtonAddComment(getContext(), this.widthScreen, this.heightScreen, this.animationManager);
+		this.panelListComments = new PanelListComments(getContext(), this.widthScreen, this.heightScreen, this.animationManager);
 	    
 		this.listLines = new ArrayList<>();
 		scaleDetector = new ScaleGestureDetector(context, new ScaleListener());
@@ -104,108 +112,44 @@ public class MapMetro extends RelativeLayout{
 	 */
 	public void addInformationsPanel(){
 		this.panelInfoDisplay=true;
-
+		this.touchEnable=false;
+		
+		
+		
+		addGreyPanel();
 		addListViewComments();
 		addTextViewInfoStation();
 		addButtonAddComment();
 		
 	}
 	
+	private void addGreyPanel(){
+	    this.addView(this.greyPanel);
+		this.greyPanel.appear();
+	}
 	
 	/**
 	 * Add and display the list of the comments for the station selected
 	 */
 	private void addListViewComments(){
-		this.listViewComments = new ListView(getContext());
-		
-		LayoutParams params = new LayoutParams(
-		        LayoutParams.MATCH_PARENT,      
-		        LayoutParams.MATCH_PARENT
-		);
-		params.setMargins(	(int)(this.widthScreen*Constants.MARGIN_PURCENTAGE_LEFT_LV),//0.07
-							(int)(this.heightScreen*Constants.MARGIN_PURCENTAGE_TOP_LV),//0.3
-							(int)(this.widthScreen*Constants.MARGIN_PURCENTAGE_RIGHT_LV),//0.07
-							(int)(this.heightScreen*Constants.MARGIN_PURCENTAGE_BOTTOM_LV));//0.07
-		
-		this.listViewComments.setLayoutParams(params);
-		this.listViewComments.setBackgroundColor(Color.LTGRAY);
-	    String[] values = new String[50];
-	    for(int i=0;i<50;i++){
-	        values[i] = ""+i;
-	    }
-	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.list_item, values);
-	    this.listViewComments.setAdapter(adapter);
-	    this.listViewComments.setOnItemClickListener(new OnItemClickListener(){
-
-	        @Override
-	        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-	                long arg3) {
-	            //Toast.makeText(getBaseContext(), ""+arg2,     Toast.LENGTH_SHORT).show();
-	            Log.d("DEBUG", ""+arg2);
-
-	        }
-
-	    });
-	    this.listViewComments.startAnimation(this.animationManager.getAnimation(R.anim.animationlistappear));
-	    this.addView(this.listViewComments);
+	    this.addView(this.panelListComments);
+	    this.panelListComments.appear();
 	}
 	
 	/**
 	 * Add and display informations about the station selected
 	 */
 	private void addTextViewInfoStation(){
-		this.textViewInfoStation = new TextView(getContext());
-		
-		LayoutParams params = new LayoutParams(
-		        LayoutParams.MATCH_PARENT,      
-		        LayoutParams.MATCH_PARENT
-		);
-		params.setMargins(	(int)(this.widthScreen*Constants.MARGIN_PURCENTAGE_LEFT_TV),
-							(int)(this.heightScreen*Constants.MARGIN_PURCENTAGE_TOP_TV),
-							(int)(this.widthScreen*Constants.MARGIN_PURCENTAGE_RIGHT_TV),
-							(int)(this.heightScreen*Constants.MARGIN_PURCENTAGE_BOTTOM_TV));
-		
-		this.textViewInfoStation.setLayoutParams(params);
-		this.textViewInfoStation.setBackgroundColor(Color.LTGRAY);
-		
-		this.textViewInfoStation.setText("BLABLABLA JE SUIS UNE STATION :3");
-		this.textViewInfoStation.startAnimation(this.animationManager.getAnimation(R.anim.animationinfostationappear));
-		this.addView(this.textViewInfoStation);
+		this.addView(this.panelInfoStations);
+		this.panelInfoStations.appear();
 	}
 	
 	/**
 	 * Add and display the button for adding a new comment
 	 */
 	private void addButtonAddComment(){
-		this.buttonAddComment = new Button(getContext());
-		
-		LayoutParams params = new LayoutParams(
-		        LayoutParams.WRAP_CONTENT,      
-		        LayoutParams.WRAP_CONTENT
-		);
-		
-		params.setMargins(	(int)(this.widthScreen*Constants.MARGIN_PURCENTAGE_LEFT_BTN),
-							(int)(this.heightScreen*Constants.MARGIN_PURCENTAGE_TOP_BTN),
-							(int)(this.widthScreen*Constants.MARGIN_PURCENTAGE_RIGHT_BTN),
-							(int)(this.heightScreen*Constants.MARGIN_PURCENTAGE_BOTTOM_BTN));
-		
-		this.buttonAddComment.setLayoutParams(params);
-		this.buttonAddComment.setBackgroundResource(R.drawable.round_button_add);
-		this.buttonAddComment.setTextColor(Color.WHITE);
-		this.buttonAddComment.setTextSize(26);
-		this.buttonAddComment.setText("+");
-		
-		this.buttonAddComment.setOnTouchListener(new OnTouchListener() {
-			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				Toast.makeText(getContext(), "Ajout d'un comzz", Toast.LENGTH_SHORT).show();
-				return false;
-			}
-		});
-
-		this.buttonAddComment.startAnimation(this.animationManager.getAnimation(R.anim.animationbtnaddappear));
 		this.addView(this.buttonAddComment);
+		this.buttonAddComment.appear();
 	}
 	
 	
@@ -213,16 +157,20 @@ public class MapMetro extends RelativeLayout{
 	 * Remove the panels
 	 */
 	public void removePanelInfo(){
-
-		this.textViewInfoStation.startAnimation(this.animationManager.getAnimation(R.anim.animationinfostationdisappear));
-		this.listViewComments.startAnimation(this.animationManager.getAnimation(R.anim.animationlistdisappear));
-		this.buttonAddComment.startAnimation(this.animationManager.getAnimation(R.anim.animationbtnadddisappear));
-
-		this.removeView(this.textViewInfoStation);
-		this.removeView(this.listViewComments);
+		
+		
+		this.greyPanel.disappear();
+		this.panelInfoStations.disappear();
+		this.buttonAddComment.disappear();
+		this.panelListComments.disappear();
+		
+		this.removeView(this.panelInfoStations);
+		this.removeView(this.panelListComments);
 		this.removeView(this.buttonAddComment);
+		this.removeView(this.greyPanel);
 
 		this.panelInfoDisplay = false;
+		this.touchEnable=true;
 	}
 	
 	
@@ -251,93 +199,96 @@ public class MapMetro extends RelativeLayout{
 	
 	@Override
     public boolean onTouchEvent(MotionEvent ev) {
-        // Let the ScaleGestureDetector inspect all events.
-        scaleDetector.onTouchEvent(ev);
-        
-        final int action = ev.getAction();
-        
-        /**
-         * Define the new coordinate (posX/pos) of the map
-         */
-        switch (action & MotionEvent.ACTION_MASK) {
-        
-	        case MotionEvent.ACTION_DOWN: {
-	            final float x = ev.getX();
-	            final float y = ev.getY();
-	            
-	            lastTouchX = x;
-	            lastTouchY = y;
-	            activePointerId = ev.getPointerId(0);
-	            break;
-	        }
-	            
-	        case MotionEvent.ACTION_MOVE: {
-	            final int pointerIndex = ev.findPointerIndex(activePointerId);
-	            final float x = ev.getX(pointerIndex);
-	            final float y = ev.getY(pointerIndex);
-	
-	            // Only move if the ScaleGestureDetector isn't processing a gesture.
-	            if (!scaleDetector.isInProgress()) {
-	                final float dx = x - lastTouchX;
-	                final float dy = y - lastTouchY;
-	
-	                posX += dx;
-	                posY += dy;
-	
-	                invalidate();
-	            }
-	            
-	            /**
-	             * Replace the map when it's out of the screen
-	             */
-	            
-	            if(posX<=0-xMaxRight*scaleFactor/SIZE_DIVISOR){
-	            	posX=-xMaxRight*scaleFactor/SIZE_DIVISOR;
-	            }
-	            
-	            if(posX>=(widthScreen-xMaxLeft*scaleFactor)/SIZE_DIVISOR){
-	            	posX=(widthScreen-xMaxLeft*scaleFactor)/SIZE_DIVISOR;
-	            }
-	            
-	            if(posY<=-yMaxBottom*scaleFactor/SIZE_DIVISOR){
-	            	posY=-yMaxBottom*scaleFactor/SIZE_DIVISOR;
-	            }
-	            
-	            if(posY>=(heightScreen-statusBarHeight-yMaxTop*scaleFactor)/SIZE_DIVISOR){
-	            	posY=(heightScreen-statusBarHeight-yMaxTop*scaleFactor)/SIZE_DIVISOR;
-	            }
-	
-	            lastTouchX = x;
-	            lastTouchY = y;
-	
-	            break;
-	        }
-	            
-	        case MotionEvent.ACTION_UP: {
-	            activePointerId = INVALID_POINTER_ID;
-	            break;
-	        }
-	            
-	        case MotionEvent.ACTION_CANCEL: {
-	            activePointerId = INVALID_POINTER_ID;
-	            break;
-	        }
+		
+		if(this.touchEnable){
+	        // Let the ScaleGestureDetector inspect all events.
+	        scaleDetector.onTouchEvent(ev);
 	        
-	        case MotionEvent.ACTION_POINTER_UP: {
-	            final int pointerIndex = (ev.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) 
-	                    >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
-	            final int pointerId = ev.getPointerId(pointerIndex);
-	            if (pointerId == activePointerId) {
-	                // This was our active pointer going up. Choose a new
-	                // active pointer and adjust accordingly.
-	                final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
-	                lastTouchX = ev.getX(newPointerIndex);
-	                lastTouchY = ev.getY(newPointerIndex);
-	                activePointerId = ev.getPointerId(newPointerIndex);
-	            }
-	            break;
+	        final int action = ev.getAction();
+	        
+	        /**
+	         * Define the new coordinate (posX/pos) of the map
+	         */
+	        switch (action & MotionEvent.ACTION_MASK) {
+	        
+		        case MotionEvent.ACTION_DOWN: {
+		            final float x = ev.getX();
+		            final float y = ev.getY();
+		            
+		            lastTouchX = x;
+		            lastTouchY = y;
+		            activePointerId = ev.getPointerId(0);
+		            break;
+		        }
+		            
+		        case MotionEvent.ACTION_MOVE: {
+		            final int pointerIndex = ev.findPointerIndex(activePointerId);
+		            final float x = ev.getX(pointerIndex);
+		            final float y = ev.getY(pointerIndex);
+		
+		            // Only move if the ScaleGestureDetector isn't processing a gesture.
+		            if (!scaleDetector.isInProgress()) {
+		                final float dx = x - lastTouchX;
+		                final float dy = y - lastTouchY;
+		
+		                posX += dx;
+		                posY += dy;
+		
+		                invalidate();
+		            }
+		            
+		            /**
+		             * Replace the map when it's out of the screen
+		             */
+		            
+		            if(posX<=0-xMaxRight*scaleFactor/SIZE_DIVISOR){
+		            	posX=-xMaxRight*scaleFactor/SIZE_DIVISOR;
+		            }
+		            
+		            if(posX>=(widthScreen-xMaxLeft*scaleFactor)/SIZE_DIVISOR){
+		            	posX=(widthScreen-xMaxLeft*scaleFactor)/SIZE_DIVISOR;
+		            }
+		            
+		            if(posY<=-yMaxBottom*scaleFactor/SIZE_DIVISOR){
+		            	posY=-yMaxBottom*scaleFactor/SIZE_DIVISOR;
+		            }
+		            
+		            if(posY>=(heightScreen-statusBarHeight-yMaxTop*scaleFactor)/SIZE_DIVISOR){
+		            	posY=(heightScreen-statusBarHeight-yMaxTop*scaleFactor)/SIZE_DIVISOR;
+		            }
+		
+		            lastTouchX = x;
+		            lastTouchY = y;
+		
+		            break;
+		        }
+		            
+		        case MotionEvent.ACTION_UP: {
+		            activePointerId = INVALID_POINTER_ID;
+		            break;
+		        }
+		            
+		        case MotionEvent.ACTION_CANCEL: {
+		            activePointerId = INVALID_POINTER_ID;
+		            break;
+		        }
+		        
+		        case MotionEvent.ACTION_POINTER_UP: {
+		            final int pointerIndex = (ev.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) 
+		                    >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
+		            final int pointerId = ev.getPointerId(pointerIndex);
+		            if (pointerId == activePointerId) {
+		                // This was our active pointer going up. Choose a new
+		                // active pointer and adjust accordingly.
+		                final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
+		                lastTouchX = ev.getX(newPointerIndex);
+		                lastTouchY = ev.getY(newPointerIndex);
+		                activePointerId = ev.getPointerId(newPointerIndex);
+		            }
+		            break;
+		        }
 	        }
-        }
+		}
         
         return true;
     }
@@ -419,10 +370,6 @@ public class MapMetro extends RelativeLayout{
 			
 			this.addView(this.listLines.get(i).getLineView());
 		}
-		
-		//
-		//this.addInformationsPanel();
-		//this.setInformationPanelVisibility(true);
 		
 	}
 

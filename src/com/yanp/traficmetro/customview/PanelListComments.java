@@ -8,22 +8,23 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.yanp.traficmetro.AnimationManager;
 import com.yanp.traficmetro.Constants;
 import com.yanp.traficmetro.R;
 
-public class UNUSEDPanelListComments extends ListView {
+public class PanelListComments extends ListView {
 
 	private AnimationManager animationManager;
 	
-	public UNUSEDPanelListComments(Context context, int widthScreen, int heightScreen, AnimationManager animationManager) {
+	public PanelListComments(Context context, int widthScreen, int heightScreen, AnimationManager animationManager) {
 		super(context);		
 		this.animationManager=animationManager;
 		
-		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.MATCH_PARENT,      
-				LinearLayout.LayoutParams.MATCH_PARENT
+		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+				RelativeLayout.LayoutParams.MATCH_PARENT,      
+				RelativeLayout.LayoutParams.MATCH_PARENT
 		);
 		
 		params.setMargins(	(int)(widthScreen*Constants.MARGIN_PURCENTAGE_LEFT_LV),
@@ -32,12 +33,12 @@ public class UNUSEDPanelListComments extends ListView {
 				(int)(heightScreen*Constants.MARGIN_PURCENTAGE_BOTTOM_LV));
 		
 		this.setLayoutParams(params);
-		this.setBackgroundColor(Color.LTGRAY);
+		this.setBackgroundColor(Color.WHITE);
 	    String[] values = new String[50];
 	    for(int i=0;i<50;i++){
 	        values[i] = ""+i;
 	    }
-	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.list_item, values);
+	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.lv_item, values);
 	    this.setAdapter(adapter);
 	    this.setOnItemClickListener(new OnItemClickListener(){
 
@@ -60,7 +61,6 @@ public class UNUSEDPanelListComments extends ListView {
 	
 	public void disappear(){
 		this.startAnimation(this.animationManager.getAnimation(R.anim.animationlistdisappear));
-		this.setVisibility(View.GONE);
 	}
 
 }

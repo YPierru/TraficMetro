@@ -10,11 +10,11 @@ import com.yanp.traficmetro.AnimationManager;
 import com.yanp.traficmetro.Constants;
 import com.yanp.traficmetro.R;
 
-public class UNUSEDPanelInfoStations extends TextView {
+public class PanelInfoStations extends TextView {
 	
 	private AnimationManager animationManager;
 
-	public UNUSEDPanelInfoStations(Context context, int widthScreen, int heightScreen, AnimationManager animationManager) {
+	public PanelInfoStations(Context context, int widthScreen, int heightScreen, AnimationManager animationManager) {
 		super(context);
 		this.animationManager=animationManager;
 		LayoutParams params = new LayoutParams(
@@ -27,7 +27,7 @@ public class UNUSEDPanelInfoStations extends TextView {
 							(int)(heightScreen*Constants.MARGIN_PURCENTAGE_BOTTOM_TV));
 		
 		this.setLayoutParams(params);
-		this.setBackgroundColor(Color.LTGRAY);
+		this.setBackgroundColor(Color.WHITE);
 		
 		this.setText("BLABLABLA JE SUIS UNE STATION :3");
 		this.setVisibility(View.GONE);
@@ -40,7 +40,6 @@ public class UNUSEDPanelInfoStations extends TextView {
 	
 	public void disappear(){
 		this.startAnimation(this.animationManager.getAnimation(R.anim.animationinfostationdisappear));
-		this.setVisibility(View.GONE);
 	}
 
 }

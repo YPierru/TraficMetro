@@ -34,6 +34,8 @@ public class AnimationManager {
 		this.mapAnimations.put(R.anim.animationinfostationdisappear,AnimationUtils.loadAnimation(this.activityReference, R.anim.animationinfostationdisappear));
 		this.mapAnimations.put(R.anim.animationlistappear,AnimationUtils.loadAnimation(this.activityReference, R.anim.animationlistappear));
 		this.mapAnimations.put(R.anim.animationlistdisappear,AnimationUtils.loadAnimation(this.activityReference, R.anim.animationlistdisappear));
+		this.mapAnimations.put(R.anim.animationpanelappear,AnimationUtils.loadAnimation(this.activityReference, R.anim.animationpanelappear));
+		this.mapAnimations.put(R.anim.animationpaneldisappear,AnimationUtils.loadAnimation(this.activityReference, R.anim.animationpaneldisappear));
 	}
 
 	/**
