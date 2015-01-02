@@ -4,4 +4,8 @@
     android:layout_height="fill_parent"
     android:padding="10dp"
     android:textSize="16sp" >
+<<<<<<< HEAD
 </TextView><!-- From: file:/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/src/main/res/layout/lv_item.xml -->
+=======
+</TextView><!-- From: file:/Users/YPierru/AndroidstudioProjects/TraficMetro/app/src/main/res/layout/lv_item.xml -->
+>>>>>>> FETCH_HEAD

@@ -6,4 +6,8 @@
         android:centerColor="#FF000000"
         android:angle="270" />
 
+<<<<<<< HEAD
 </shape><!-- From: file:/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/src/main/res/drawable/station_shape.xml -->
+=======
+</shape><!-- From: file:/Users/YPierru/AndroidstudioProjects/TraficMetro/app/src/main/res/drawable/station_shape.xml -->
+>>>>>>> FETCH_HEAD

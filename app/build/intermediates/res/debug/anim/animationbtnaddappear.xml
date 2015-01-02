@@ -13,4 +13,8 @@
         android:fromAlpha="0.0"
         android:toAlpha="1.0" />
 
+<<<<<<< HEAD
 </set><!-- From: file:/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/src/main/res/anim/animationbtnaddappear.xml -->
+=======
+</set><!-- From: file:/Users/YPierru/AndroidstudioProjects/TraficMetro/app/src/main/res/anim/animationbtnaddappear.xml -->
+>>>>>>> FETCH_HEAD

@@ -4,4 +4,8 @@
         <Station name="La Défense" terminus="true" x="68" y="182"/>
         <Station name="Esplanade La Défense" terminus="false" x="90" y="198"/>
     </Line>
+<<<<<<< HEAD
 </Map><!-- From: file:/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/src/main/res/xml/stationdata.xml -->
+=======
+</Map><!-- From: file:/Users/YPierru/AndroidstudioProjects/TraficMetro/app/src/main/res/xml/stationdata.xml -->
+>>>>>>> FETCH_HEAD

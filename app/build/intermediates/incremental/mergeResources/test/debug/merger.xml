@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <merger version="3"><dataSet config="main"><source path="/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/src/androidTest/res"/><source path="/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/build/generated/res/rs/test/debug"/><source path="/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/build/generated/res/generated/test/debug"/></dataSet><mergedItems/></merger>
+=======
+<merger version="3"><dataSet config="main"><source path="/Users/YPierru/AndroidstudioProjects/TraficMetro/app/src/androidTest/res"/><source path="/Users/YPierru/AndroidstudioProjects/TraficMetro/app/build/generated/res/rs/test/debug"/><source path="/Users/YPierru/AndroidstudioProjects/TraficMetro/app/build/generated/res/generated/test/debug"/></dataSet><mergedItems/></merger>
+>>>>>>> FETCH_HEAD

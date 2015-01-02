@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
     <!-- From: file:/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/src/main/res/values/colors.xml -->
+=======
+    <!-- From: file:/Users/YPierru/AndroidstudioProjects/TraficMetro/app/src/main/res/values/colors.xml -->
+>>>>>>> FETCH_HEAD
     <eat-comment/>
     <color name="softgrey">#32000000</color>
     <color name="white">#FFFFFF</color>
     <declare-styleable name="View"><attr name="android:background"/><attr name="android:clickable"/><attr name="android:contentDescription"/><attr name="android:drawingCacheQuality"/><attr name="android:duplicateParentState"/><attr name="android:fadeScrollbars"/><attr name="android:fadingEdge"/><attr name="android:fadingEdgeLength"/><attr name="android:fitsSystemWindows"/><attr name="android:focusable"/><attr name="android:focusableInTouchMode"/><attr name="android:hapticFeedbackEnabled"/><attr name="android:id"/><attr name="android:isScrollContainer"/><attr name="android:keepScreenOn"/><attr name="android:longClickable"/><attr name="android:minHeight"/><attr name="android:minWidth"/><attr name="android:nextFocusDown"/><attr name="android:nextFocusLeft"/><attr name="android:nextFocusRight"/><attr name="android:nextFocusUp"/><attr name="android:onClick"/><attr name="android:padding"/><attr name="android:paddingBottom"/><attr name="android:paddingLeft"/><attr name="android:paddingRight"/><attr name="android:paddingTop"/><attr name="android:saveEnabled"/><attr name="android:scrollX"/><attr name="android:scrollY"/><attr name="android:scrollbarAlwaysDrawHorizontalTrack"/><attr name="android:scrollbarAlwaysDrawVerticalTrack"/><attr name="android:scrollbarDefaultDelayBeforeFade"/><attr name="android:scrollbarFadeDuration"/><attr name="android:scrollbarSize"/><attr name="android:scrollbarStyle"/><attr name="android:scrollbarThumbHorizontal"/><attr name="android:scrollbarThumbVertical"/><attr name="android:scrollbarTrackHorizontal"/><attr name="android:scrollbarTrackVertical"/><attr name="android:scrollbars"/><attr name="android:soundEffectsEnabled"/><attr name="android:tag"/><attr name="android:visibility"/></declare-styleable>
+<<<<<<< HEAD
     <!-- From: file:/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <!-- From: file:/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/src/main/res/values/strings.xml -->
+=======
+    <!-- From: file:/Users/YPierru/AndroidstudioProjects/TraficMetro/app/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- From: file:/Users/YPierru/AndroidstudioProjects/TraficMetro/app/src/main/res/values/strings.xml -->
+>>>>>>> FETCH_HEAD
     <eat-comment/>
     <string name="action_settings">Settings</string>
     <string name="app_name">TraficMetro</string>
     <string name="hello_world">Hello world!</string>
+<<<<<<< HEAD
     <!-- From: file:/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/src/main/res/values/styles.xml -->
+=======
+    <!-- From: file:/Users/YPierru/AndroidstudioProjects/TraficMetro/app/src/main/res/values/styles.xml -->
+>>>>>>> FETCH_HEAD
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
