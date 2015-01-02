@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map>
+    <Line name="Métro 1" redCode="255" greenCode="186" blueCode="17" numberOfStations="25" >
+        <Station name="La Défense" terminus="true" x="68" y="182"/>
+        <Station name="Esplanade La Défense" terminus="false" x="90" y="198"/>
+    </Line>
+</Map><!-- From: file:/Users/YPierru/AndroidstudioProjects/TraficMetro/app/src/main/res/xml/stationdata.xml -->
