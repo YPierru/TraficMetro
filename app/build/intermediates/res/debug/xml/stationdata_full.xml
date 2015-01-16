@@ -186,8 +186,4 @@
         <Station name="Magenta" terminus="false" x="725" y="213"/>
         <Station name="Gare du Nord" terminus="false" x="938" y="116"/>
     </Line>
-<<<<<<< HEAD
 </Map><!-- From: file:/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/src/main/res/xml/stationdata_full.xml -->
-=======
-</Map><!-- From: file:/Users/YPierru/AndroidstudioProjects/TraficMetro/app/src/main/res/xml/stationdata_full.xml -->
->>>>>>> FETCH_HEAD

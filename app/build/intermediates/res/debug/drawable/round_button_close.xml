@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval">
-    <solid android:color="#ec3939"/>
-<<<<<<< HEAD
-</shape><!-- From: file:/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/src/main/res/drawable/round_button_close.xml -->
-=======
-</shape><!-- From: file:/Users/YPierru/AndroidstudioProjects/TraficMetro/app/src/main/res/drawable/round_button_close.xml -->
->>>>>>> FETCH_HEAD

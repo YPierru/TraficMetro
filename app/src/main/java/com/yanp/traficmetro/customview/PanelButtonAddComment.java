@@ -1,6 +1,7 @@
 package com.yanp.traficmetro.customview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
@@ -14,10 +15,12 @@ import com.yanp.traficmetro.R;
 public class PanelButtonAddComment extends Button {
 
 	private AnimationManager animationManager;
+    private Context context;
 	
 	public PanelButtonAddComment(Context context, int widthScreen, int heightScreen, AnimationManager animationManager) {
 		super(context);
 		this.animationManager=animationManager;
+        this.context=context;
 		
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
 				RelativeLayout.LayoutParams.WRAP_CONTENT,      
@@ -53,8 +56,8 @@ public class PanelButtonAddComment extends Button {
 
 		@Override
 		public void onClick(View v) {
-			Toast.makeText(getContext(), "Ajout d'un comzz", Toast.LENGTH_SHORT).show();
-		}
+
+        }
 		
 	}
 

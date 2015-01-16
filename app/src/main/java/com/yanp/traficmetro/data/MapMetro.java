@@ -5,26 +5,16 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yanp.traficmetro.AnimationManager;
-import com.yanp.traficmetro.Constants;
-import com.yanp.traficmetro.R;
 import com.yanp.traficmetro.customview.GreyPanel;
 import com.yanp.traficmetro.customview.PanelButtonAddComment;
 import com.yanp.traficmetro.customview.PanelInfoStations;
+import com.yanp.traficmetro.customview.PanelInfoStations_ex;
 import com.yanp.traficmetro.customview.PanelListComments;
 
 /**
@@ -77,6 +67,7 @@ public class MapMetro extends RelativeLayout{
     
     private PanelButtonAddComment buttonAddComment;
     private GreyPanel greyPanel;
+    //private PanelInfoStations_ex panelInfoStations;
     private PanelInfoStations panelInfoStations;
     private PanelListComments panelListComments;
     
@@ -99,18 +90,19 @@ public class MapMetro extends RelativeLayout{
 		requestLayout();
 		
 		this.greyPanel=new GreyPanel(getContext(), this.animationManager, this);
-		this.panelInfoStations=new PanelInfoStations(getContext(), this.widthScreen, this.heightScreen, this.animationManager);
+		//this.panelInfoStations=new PanelInfoStations_ex(getContext(), this.widthScreen, this.heightScreen, this.animationManager);
+        this.panelInfoStations=new PanelInfoStations(getContext(), this.widthScreen, this.heightScreen, this.animationManager);
 	    this.buttonAddComment = new PanelButtonAddComment(getContext(), this.widthScreen, this.heightScreen, this.animationManager);
 		this.panelListComments = new PanelListComments(getContext(), this.widthScreen, this.heightScreen, this.animationManager);
 	    
-		this.listLines = new ArrayList<>();
+		this.listLines = new ArrayList<Line>();
 		scaleDetector = new ScaleGestureDetector(context, new ScaleListener());
 	}	
 	
 	/**
 	 * Display the informations panel on the screen
 	 */
-	public void addInformationsPanel(){
+	public void addInformationsPanel(String stationName, String lineName){
 		this.panelInfoDisplay=true;
 		this.touchEnable=false;
 		
@@ -118,7 +110,7 @@ public class MapMetro extends RelativeLayout{
 		
 		addGreyPanel();
 		addListViewComments();
-		addTextViewInfoStation();
+		addTextViewInfoStation(stationName,lineName);
 		addButtonAddComment();
 		
 	}
@@ -139,8 +131,9 @@ public class MapMetro extends RelativeLayout{
 	/**
 	 * Add and display informations about the station selected
 	 */
-	private void addTextViewInfoStation(){
-		this.addView(this.panelInfoStations);
+	private void addTextViewInfoStation(String stationName, String lineName){
+		this.addView(this.panelInfoStations.getPanelInfoStations());
+        this.panelInfoStations.setData(stationName, lineName);
 		this.panelInfoStations.appear();
 	}
 	
@@ -164,7 +157,7 @@ public class MapMetro extends RelativeLayout{
 		this.buttonAddComment.disappear();
 		this.panelListComments.disappear();
 		
-		this.removeView(this.panelInfoStations);
+		this.removeView(this.panelInfoStations.getPanelInfoStations());
 		this.removeView(this.panelListComments);
 		this.removeView(this.buttonAddComment);
 		this.removeView(this.greyPanel);

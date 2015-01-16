@@ -22,5 +22,6 @@ public class Constants {
 	public static final double MARGIN_PURCENTAGE_TOP_BTN = 0.845;
 	public static final double MARGIN_PURCENTAGE_RIGHT_BTN = 0.04;
 	public static final double MARGIN_PURCENTAGE_BOTTOM_BTN = 0.025;
+
 	
 }

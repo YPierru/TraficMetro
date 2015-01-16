@@ -13,8 +13,4 @@
         android:fromAlpha="1.0"
         android:toAlpha="0.0" />
 
-<<<<<<< HEAD
 </set><!-- From: file:/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/src/main/res/anim/animationlistdisappear.xml -->
-=======
-</set><!-- From: file:/Users/YPierru/AndroidstudioProjects/TraficMetro/app/src/main/res/anim/animationlistdisappear.xml -->
->>>>>>> FETCH_HEAD

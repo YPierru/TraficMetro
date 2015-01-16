@@ -10,11 +10,11 @@ import com.yanp.traficmetro.AnimationManager;
 import com.yanp.traficmetro.Constants;
 import com.yanp.traficmetro.R;
 
-public class PanelInfoStations extends TextView {
+public class PanelInfoStations_ex extends TextView {
 	
 	private AnimationManager animationManager;
 
-	public PanelInfoStations(Context context, int widthScreen, int heightScreen, AnimationManager animationManager) {
+	public PanelInfoStations_ex(Context context, int widthScreen, int heightScreen, AnimationManager animationManager) {
 		super(context);
 		this.animationManager=animationManager;
 		LayoutParams params = new LayoutParams(
@@ -29,9 +29,13 @@ public class PanelInfoStations extends TextView {
 		this.setLayoutParams(params);
 		this.setBackgroundColor(Color.WHITE);
 		
-		this.setText("BLABLABLA JE SUIS UNE STATION :3");
+		//this.setText("BLABLABLA JE SUIS UNE STATION :3");
 		this.setVisibility(View.GONE);
 	}
+
+    public void setData(String stationName,String lineName){
+        this.setText(stationName+" "+lineName);
+    }
 	
 	public void appear(){
 		this.setVisibility(View.VISIBLE);

@@ -75,7 +75,7 @@ public class Station {
 	}
 	
 	public void popPanelComments(){
-		this.mapMetro.addInformationsPanel();
+		this.mapMetro.addInformationsPanel(this.name,this.lineName);
 	}
 	
 }

@@ -19,6 +19,39 @@ public final class R {
         public static final int animationpaneldisappear=0x7f040007;
     }
     public static final class attr {
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int exampleColor=0x7f010002;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int exampleDimension=0x7f010001;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int exampleDrawable=0x7f010003;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int exampleString=0x7f010000;
     }
     public static final class color {
         public static final int softgrey=0x7f060000;
@@ -31,20 +64,22 @@ public final class R {
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
         public static final int round_button_add=0x7f020001;
-        public static final int round_button_close=0x7f020002;
-        public static final int station_shape=0x7f020003;
-        public static final int station_shape1=0x7f020004;
-        public static final int station_shape2=0x7f020005;
+        public static final int station_shape=0x7f020002;
+        public static final int station_shape1=0x7f020003;
+        public static final int station_shape2=0x7f020004;
+        public static final int trafic_light_green=0x7f020005;
     }
     public static final class id {
         public static final int action_settings=0x7f0b0000;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int lv_item=0x7f030001;
+        public static final int activity_add_comment=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int lv_item=0x7f030002;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
+        public static final int menu_add_comment=0x7f0a0001;
     }
     public static final class string {
         public static final int action_settings=0x7f080000;
@@ -71,6 +106,82 @@ public final class R {
         public static final int stationdatacopie=0x7f050002;
     }
     public static final class styleable {
+        /** Attributes that can be used with a TraficLightView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #TraficLightView_exampleColor com.yanp.traficmetro:exampleColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #TraficLightView_exampleDimension com.yanp.traficmetro:exampleDimension}</code></td><td></td></tr>
+           <tr><td><code>{@link #TraficLightView_exampleDrawable com.yanp.traficmetro:exampleDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #TraficLightView_exampleString com.yanp.traficmetro:exampleString}</code></td><td></td></tr>
+           </table>
+           @see #TraficLightView_exampleColor
+           @see #TraficLightView_exampleDimension
+           @see #TraficLightView_exampleDrawable
+           @see #TraficLightView_exampleString
+         */
+        public static final int[] TraficLightView = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.yanp.traficmetro.R.attr#exampleColor}
+          attribute's value can be found in the {@link #TraficLightView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.yanp.traficmetro:exampleColor
+        */
+        public static final int TraficLightView_exampleColor = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.yanp.traficmetro.R.attr#exampleDimension}
+          attribute's value can be found in the {@link #TraficLightView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.yanp.traficmetro:exampleDimension
+        */
+        public static final int TraficLightView_exampleDimension = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.yanp.traficmetro.R.attr#exampleDrawable}
+          attribute's value can be found in the {@link #TraficLightView} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name com.yanp.traficmetro:exampleDrawable
+        */
+        public static final int TraficLightView_exampleDrawable = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.yanp.traficmetro.R.attr#exampleString}
+          attribute's value can be found in the {@link #TraficLightView} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.yanp.traficmetro:exampleString
+        */
+        public static final int TraficLightView_exampleString = 0;
         /** Attributes that can be used with a View.
            <p>Includes the following attributes:</p>
            <table>

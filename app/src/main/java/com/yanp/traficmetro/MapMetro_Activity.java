@@ -19,7 +19,7 @@ import com.yanp.traficmetro.data.MapMetro;
  * @author YPierru
  *
  */
-public class MainActivity extends Activity {
+public class MapMetro_Activity extends Activity {
 
 	private MapMetro mapMetro;
 	private AnimationManager animationManager;
