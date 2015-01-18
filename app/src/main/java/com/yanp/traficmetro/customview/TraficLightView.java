@@ -14,20 +14,32 @@ import android.view.View;
 import com.yanp.traficmetro.Constants;
 import com.yanp.traficmetro.R;
 
-
 public class TraficLightView extends View {
 
     private Paint paint;
+
+    private int green=Color.rgb(0,204,0);
+    private int orange=Color.rgb(232,108,25);
+    private int red=Color.rgb(0,204,0);
+    private int black=Color.rgb(0,0,0);
+
+    private int currentColor;
 
     public TraficLightView(Context context) {
         super(context);
         this.paint=new Paint();
     }
 
+    public void setColor(){
+        /**
+         * TODO
+         */
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
-        paint.setColor(Color.GREEN);
+        paint.setColor(this.red);
         paint.setStyle(Paint.Style.FILL);
-        canvas.drawRect(0, 0, 180, 180, paint);
+        canvas.drawRect(0, 0, 500, 500, paint);
     }
 }

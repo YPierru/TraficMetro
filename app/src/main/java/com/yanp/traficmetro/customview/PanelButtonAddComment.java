@@ -10,38 +10,52 @@ import android.widget.Toast;
 
 import com.yanp.traficmetro.AnimationManager;
 import com.yanp.traficmetro.Constants;
+import com.yanp.traficmetro.IPanel;
 import com.yanp.traficmetro.R;
 
-public class PanelButtonAddComment extends Button {
+/**
+ * Class which creates the little "+" button, right-bottom corner
+ */
+public class PanelButtonAddComment extends Button implements IPanel {
 
 	private AnimationManager animationManager;
     private Context context;
-	
+	private int widthScreen;
+    private int heightScreen;
+
+
 	public PanelButtonAddComment(Context context, int widthScreen, int heightScreen, AnimationManager animationManager) {
 		super(context);
 		this.animationManager=animationManager;
         this.context=context;
-		
-		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.WRAP_CONTENT,      
-				RelativeLayout.LayoutParams.WRAP_CONTENT
-		);
-		
-		params.setMargins(	(int)(widthScreen*Constants.MARGIN_PURCENTAGE_LEFT_BTN),
-							(int)(heightScreen*Constants.MARGIN_PURCENTAGE_TOP_BTN),
-							(int)(widthScreen*Constants.MARGIN_PURCENTAGE_RIGHT_BTN),
-							(int)(heightScreen*Constants.MARGIN_PURCENTAGE_BOTTOM_BTN));
-		
-		this.setLayoutParams(params);
-		this.setBackgroundResource(R.drawable.round_button_add);
-		this.setTextColor(Color.WHITE);
-		this.setTextSize(26);
-		this.setText("+");
-		
-		this.setOnClickListener(new ButtonAddClickListener());
+		this.widthScreen=widthScreen;
+        this.heightScreen=heightScreen;
 
-		this.setVisibility(View.GONE);
+        initButton();
+
 	}
+
+    public void initButton(){
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+        );
+
+        params.setMargins(	(int)(widthScreen*Constants.MARGIN_PURCENTAGE_LEFT_BTN),
+                (int)(heightScreen*Constants.MARGIN_PURCENTAGE_TOP_BTN),
+                (int)(widthScreen*Constants.MARGIN_PURCENTAGE_RIGHT_BTN),
+                (int)(heightScreen*Constants.MARGIN_PURCENTAGE_BOTTOM_BTN));
+
+        this.setLayoutParams(params);
+        this.setBackgroundResource(R.drawable.round_button_add);
+        this.setTextColor(Color.WHITE);
+        this.setTextSize(26);
+        this.setText("+");
+
+        this.setOnClickListener(new ButtonAddClickListener());
+
+        this.setVisibility(View.GONE);
+    }
 	
 	public void appear(){
 		this.setVisibility(View.VISIBLE);

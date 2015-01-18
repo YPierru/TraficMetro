@@ -12,9 +12,15 @@ import android.widget.RelativeLayout;
 
 import com.yanp.traficmetro.AnimationManager;
 import com.yanp.traficmetro.Constants;
+import com.yanp.traficmetro.IPanel;
 import com.yanp.traficmetro.R;
 
-public class PanelListComments extends ListView {
+
+/**
+ * Create the panel of the last "comment".
+ * IN CONSTRUCTION
+ */
+public class PanelListComments extends ListView implements IPanel {
 
 	private AnimationManager animationManager;
 	

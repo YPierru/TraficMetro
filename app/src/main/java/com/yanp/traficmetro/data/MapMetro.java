@@ -14,7 +14,6 @@ import com.yanp.traficmetro.AnimationManager;
 import com.yanp.traficmetro.customview.GreyPanel;
 import com.yanp.traficmetro.customview.PanelButtonAddComment;
 import com.yanp.traficmetro.customview.PanelInfoStations;
-import com.yanp.traficmetro.customview.PanelInfoStations_ex;
 import com.yanp.traficmetro.customview.PanelListComments;
 
 /**

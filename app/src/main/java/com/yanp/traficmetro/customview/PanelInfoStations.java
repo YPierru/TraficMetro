@@ -9,9 +9,15 @@ import android.widget.TextView;
 
 import com.yanp.traficmetro.AnimationManager;
 import com.yanp.traficmetro.Constants;
+import com.yanp.traficmetro.IPanel;
 import com.yanp.traficmetro.R;
 
-public class PanelInfoStations {
+/**
+ * This class create the panel displayed when the user click on a station.
+ * Construction :
+ * linearLayoutHorizontal(traficLight,linearLayoutVertical(stationName,lineName))
+ */
+public class PanelInfoStations implements IPanel{
 
     private LinearLayout linearLayoutHorizontal;
     private LinearLayout linearLayoutVertical;
@@ -32,7 +38,6 @@ public class PanelInfoStations {
         this.heightScreen=heightScreen;
 
         this.initLinearLayoutHorizontal();
-
         this.initLinearLayoutVertical();
 
         this.traficLight = new TraficLightView(this.context);
@@ -54,6 +59,9 @@ public class PanelInfoStations {
 
 	}
 
+    /**
+     * Initialise the linear layout horiztonal, with params, marges etc.
+     */
     private void initLinearLayoutHorizontal(){
         this.linearLayoutHorizontal = new LinearLayout(this.context);
         this.linearLayoutHorizontal.setBackgroundColor(Color.WHITE);
@@ -70,6 +78,9 @@ public class PanelInfoStations {
         this.linearLayoutHorizontal.setWeightSum(10f);
     }
 
+    /**
+     * Initiliase the linear layout vertical (params, weight)
+     */
     private void initLinearLayoutVertical(){
         this.linearLayoutVertical = new LinearLayout(this.context);
         this.linearLayoutVertical.setOrientation(LinearLayout.VERTICAL);
@@ -81,19 +92,34 @@ public class PanelInfoStations {
         this.linearLayoutVertical.setLayoutParams(params);
     }
 
+    /**
+     *
+     * @return the panel
+     */
     public LinearLayout getPanelInfoStations(){
         return this.linearLayoutHorizontal;
     }
 
+    /**
+     * On construction
+     * @param stationName
+     * @param lineName
+     */
     public void setData(String stationName,String lineName){
         this.stationName.setText(stationName+" "+lineName);
     }
 
+    /**
+     * Show the panel with the animation
+     */
     public void appear(){
         this.linearLayoutHorizontal.setVisibility(View.VISIBLE);
         this.linearLayoutHorizontal.startAnimation(this.animationManager.getAnimation(R.anim.animationinfostationappear));
     }
 
+    /**
+     * Hide the panel with the animaiton
+     */
     public void disappear(){
         this.linearLayoutHorizontal.setVisibility(View.GONE);
         this.linearLayoutHorizontal.startAnimation(this.animationManager.getAnimation(R.anim.animationinfostationdisappear));

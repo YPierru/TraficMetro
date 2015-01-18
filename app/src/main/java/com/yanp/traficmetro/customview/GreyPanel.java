@@ -7,10 +7,11 @@ import android.view.View;
 import android.widget.RelativeLayout.LayoutParams;
 
 import com.yanp.traficmetro.AnimationManager;
+import com.yanp.traficmetro.IPanel;
 import com.yanp.traficmetro.R;
 import com.yanp.traficmetro.data.MapMetro;
 
-public class GreyPanel extends View {
+public class GreyPanel extends View implements IPanel {
 
 	private AnimationManager animationManager;
 	private MapMetro mapMetroRef;
