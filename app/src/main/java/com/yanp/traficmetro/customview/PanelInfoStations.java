@@ -11,6 +11,7 @@ import com.yanp.traficmetro.AnimationManager;
 import com.yanp.traficmetro.Constants;
 import com.yanp.traficmetro.IPanel;
 import com.yanp.traficmetro.R;
+import com.yanp.traficmetro.data.Struct_AllComments;
 
 /**
  * This class create the panel displayed when the user click on a station.
@@ -31,25 +32,22 @@ public class PanelInfoStations implements IPanel{
     private int widthScreen;
     private int heightScreen;
 
+    private int idStation;
+
 	public PanelInfoStations(Context context, int widthScreen, int heightScreen,AnimationManager animationManager) {
         this.context=context;
         this.animationManager=animationManager;
         this.widthScreen=widthScreen;
         this.heightScreen=heightScreen;
 
-        this.initLinearLayoutHorizontal();
-        this.initLinearLayoutVertical();
-
-        this.traficLight = new TraficLightView(this.context);
-        LinearLayout.LayoutParams params_TLV = new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.MATCH_PARENT);
-        params_TLV.weight = 3f;
-        this.traficLight.setLayoutParams(params_TLV);
 
         this.stationName=new TextView(this.context);
-        this.stationName.setText("SNdezdezdezdezd");
-
         this.lineName=new TextView(this.context);
-        this.lineName.setText("LdezdezdezdzedzdezeN");
+        this.traficLight = new TraficLightView(this.context);
+
+        this.initLinearLayoutHorizontal();
+        this.initLinearLayoutVertical();
+        this.initTraficLightView();
 
         this.linearLayoutVertical.addView(this.stationName);
         this.linearLayoutVertical.addView(this.lineName);
@@ -58,6 +56,12 @@ public class PanelInfoStations implements IPanel{
         this.linearLayoutHorizontal.addView(this.linearLayoutVertical);
 
 	}
+
+    public void initTraficLightView(){
+        LinearLayout.LayoutParams params_TLV = new LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.MATCH_PARENT);
+        params_TLV.weight = 3f;
+        this.traficLight.setLayoutParams(params_TLV);
+    }
 
     /**
      * Initialise the linear layout horiztonal, with params, marges etc.
@@ -105,8 +109,12 @@ public class PanelInfoStations implements IPanel{
      * @param stationName
      * @param lineName
      */
-    public void setData(String stationName,String lineName){
-        this.stationName.setText(stationName+" "+lineName);
+    public void setData(String stationName,String lineName, int idStation){
+
+        this.stationName.setText(stationName);
+        this.lineName.setText(lineName);
+        Struct_AllComments singleton = Struct_AllComments.getInstance();
+        this.traficLight.setColor(singleton.getLastColorById(idStation));
     }
 
     /**
@@ -118,7 +126,7 @@ public class PanelInfoStations implements IPanel{
     }
 
     /**
-     * Hide the panel with the animaiton
+     * Hide the panel with the animation
      */
     public void disappear(){
         this.linearLayoutHorizontal.setVisibility(View.GONE);

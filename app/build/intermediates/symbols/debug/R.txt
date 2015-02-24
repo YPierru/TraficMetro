@@ -20,10 +20,11 @@ int drawable station_shape 0x7f020002
 int drawable station_shape1 0x7f020003
 int drawable station_shape2 0x7f020004
 int drawable trafic_light_green 0x7f020005
-int id action_settings 0x7f0b0000
+int id action_settings 0x7f0b0001
+int id traficlight_tv 0x7f0b0000
 int layout activity_add_comment 0x7f030000
 int layout activity_main 0x7f030001
-int layout lv_item 0x7f030002
+int layout traficlight_item 0x7f030002
 int menu main 0x7f0a0000
 int menu menu_add_comment 0x7f0a0001
 int string action_settings 0x7f080000

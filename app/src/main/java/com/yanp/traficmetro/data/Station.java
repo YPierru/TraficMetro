@@ -20,8 +20,9 @@ public class Station {
 	private String lineName;
 	private ArrayList<Line> mListMembershipLines;
 	private MapMetro mapMetro;
+    private int idStation;
 	
-	public Station(Context context, String line, String name, float x, float y, boolean terminus, ArrayList<Line> listMembershipLines, MapMetro mapMetro){
+	public Station(Context context, String line, String name, float x, float y, boolean terminus, ArrayList<Line> listMembershipLines, MapMetro mapMetro, int idStation){
 
 		this.name=name;
 		this.lineName=line;
@@ -29,6 +30,8 @@ public class Station {
 		this.mListMembershipLines=listMembershipLines;
 		
 		this.mapMetro=mapMetro;
+
+        this.idStation =idStation;
 		
 		if(this.mListMembershipLines.size()>1){
 			this.stationView = new StationView(context, x, y, Color.argb(255,255, 255, 255), this);
@@ -75,7 +78,10 @@ public class Station {
 	}
 	
 	public void popPanelComments(){
-		this.mapMetro.addInformationsPanel(this.name,this.lineName);
+		this.mapMetro.addInformationsPanel(this.name,this.lineName, this.idStation);
 	}
-	
+
+    public int getIdStation() {
+        return idStation;
+    }
 }

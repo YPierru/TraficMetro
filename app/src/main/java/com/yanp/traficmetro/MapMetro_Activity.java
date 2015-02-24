@@ -23,6 +23,8 @@ public class MapMetro_Activity extends Activity {
 
 	private MapMetro mapMetro;
 	private AnimationManager animationManager;
+
+    private int idStation=1;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +38,12 @@ public class MapMetro_Activity extends Activity {
 
 		try {
 			createLayout();
-		} catch (XmlPullParserException | IOException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}catch (XmlPullParserException xpe){
+            xpe.printStackTrace();
+        }
 		
 		setContentView(this.mapMetro);
 	}
@@ -113,7 +117,9 @@ public class MapMetro_Activity extends Activity {
 				currentLine.createThenAddStation(parserXML.getAttributeValue(null, "name"), 
  					   							 parserXML.getAttributeIntValue(null, "x", 0), 
  					   							 parserXML.getAttributeIntValue(null, "y", 0), 
- 					   							 parserXML.getAttributeBooleanValue(null, "terminus", false));
+ 					   							 parserXML.getAttributeBooleanValue(null, "terminus", false),
+                                                 this.idStation);
+                this.idStation++;
 			}
 			
 			if(eventType==XmlPullParser.START_TAG && parserXML.getName().equalsIgnoreCase("IntermediaryPoint")){

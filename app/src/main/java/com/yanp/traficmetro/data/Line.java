@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PointF;
+import android.util.Log;
 
 import com.yanp.traficmetro.customview.LineView;
 
@@ -29,8 +30,8 @@ public class Line {
 		this.context=ct;
 		this.name=name;
 		this.rgbColor = Color.argb(255, r, g, b);
-		this.listStations=new ArrayList<>();
-		this.listLinePoints = new ArrayList<>();
+		this.listStations=new ArrayList<Station>();
+		this.listLinePoints = new ArrayList<PointF>();
 		this.mapMetro=mapmetro;
 	}
 	
@@ -51,14 +52,14 @@ public class Line {
 	 * @param y - coordinate from XML
 	 * @param terminus - true if the station is a terminus, false either
 	 */
-	public void createThenAddStation(String name, float x, float y, boolean terminus){
+	public void createThenAddStation(String name, float x, float y, boolean terminus, int idStation){
 
 		/*
 		 * TODO : modifier le passage de la couleur
 		 */
-		ArrayList<Line> l = new ArrayList<>();
+		ArrayList<Line> l = new ArrayList<Line>();
 		l.add(this);
-		Station st = new Station(this.context, this.name, name, x, y, terminus, l, this.mapMetro);
+		Station st = new Station(this.context, this.name, name, x, y, terminus, l, this.mapMetro, idStation);
 		
 		this.listStations.add(st);
 		
@@ -104,4 +105,5 @@ public class Line {
 		createLineView();
 		return this.lineView;
 	}
+
 }

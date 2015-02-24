@@ -18,11 +18,6 @@ public class TraficLightView extends View {
 
     private Paint paint;
 
-    private int green=Color.rgb(0,204,0);
-    private int orange=Color.rgb(232,108,25);
-    private int red=Color.rgb(0,204,0);
-    private int black=Color.rgb(0,0,0);
-
     private int currentColor;
 
     public TraficLightView(Context context) {
@@ -30,15 +25,13 @@ public class TraficLightView extends View {
         this.paint=new Paint();
     }
 
-    public void setColor(){
-        /**
-         * TODO
-         */
+    public void setColor(int color){
+        this.currentColor=color;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        paint.setColor(this.red);
+        paint.setColor(this.currentColor);
         paint.setStyle(Paint.Style.FILL);
         canvas.drawRect(0, 0, 500, 500, paint);
     }

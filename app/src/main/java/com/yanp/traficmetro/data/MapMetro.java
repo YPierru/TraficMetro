@@ -73,6 +73,8 @@ public class MapMetro extends RelativeLayout{
     private boolean panelInfoDisplay=false;
 
 	private AnimationManager animationManager;
+
+
     
 	public MapMetro(Context context, int statusBarHeight, AnimationManager animationManager){
 		super(context);
@@ -101,16 +103,16 @@ public class MapMetro extends RelativeLayout{
 	/**
 	 * Display the informations panel on the screen
 	 */
-	public void addInformationsPanel(String stationName, String lineName){
+	public void addInformationsPanel(String stationName, String lineName, int idSation){
 		this.panelInfoDisplay=true;
 		this.touchEnable=false;
 		
 		
 		
 		addGreyPanel();
-		addListViewComments();
-		addTextViewInfoStation(stationName,lineName);
-		addButtonAddComment();
+		addListViewComments(idSation);
+		addTextViewInfoStation(stationName,lineName,idSation);
+		addButtonAddComment(idSation);
 		
 	}
 	
@@ -122,25 +124,27 @@ public class MapMetro extends RelativeLayout{
 	/**
 	 * Add and display the list of the comments for the station selected
 	 */
-	private void addListViewComments(){
+	private void addListViewComments(int idStation){
 	    this.addView(this.panelListComments);
+        this.panelListComments.setData(idStation);
 	    this.panelListComments.appear();
 	}
 	
 	/**
 	 * Add and display informations about the station selected
 	 */
-	private void addTextViewInfoStation(String stationName, String lineName){
+	private void addTextViewInfoStation(String stationName, String lineName,int idStation){
 		this.addView(this.panelInfoStations.getPanelInfoStations());
-        this.panelInfoStations.setData(stationName, lineName);
+        this.panelInfoStations.setData(stationName,lineName,idStation);
 		this.panelInfoStations.appear();
 	}
 	
 	/**
 	 * Add and display the button for adding a new comment
 	 */
-	private void addButtonAddComment(){
+	private void addButtonAddComment(int idStation){
 		this.addView(this.buttonAddComment);
+        this.buttonAddComment.setData(idStation);
 		this.buttonAddComment.appear();
 	}
 	
