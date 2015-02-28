@@ -1,4 +1,0 @@
-/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/build/intermediates/classes/debug
-/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-b13093aa15aa685b159ad431446b55566f74ac06.jar
-/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-01abfadb28b2e1f90bc0590f5f17b0b12f6bb88d.jar
-/Users/YPierru/Documents/Informatique_Dev/Android/TraficMetro/app/build/intermediates/pre-dexed/debug/classes-4406eb0255dceef96c9f51a67fc9882835a0687e.jar
